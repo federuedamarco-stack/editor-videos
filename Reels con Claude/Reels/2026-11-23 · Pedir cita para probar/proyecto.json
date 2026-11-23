@@ -1,6 +1,23 @@
 {
   "tema": "Cómo pedir cita para probar un exoesqueleto",
-  "tomas": "5 clips de una persona hablando (pendientes de subir); después, 1 clip de personas probando el exoesqueleto (B-roll)",
+  "tomas": {
+    "habla": [
+      "Untitled.mov",
+      "IMG_9641.MOV",
+      "IMG_9643.MOV",
+      "IMG_9644.MOV",
+      "IMG_9646.MOV"
+    ],
+    "prueba": [
+      "IMG_9628.MOV",
+      "IMG_9629.MOV",
+      "IMG_9632.MOV",
+      "IMG_9635.MOV"
+    ],
+    "descartado": {
+      "IMG_9631.MOV": "horizontal, pierde calidad en vertical"
+    }
+  },
   "resolucion": "1080",
   "estilo": "Mi estilo/Reglas-de-estilo.md (ExoMov)",
   "revision": "guiada",
@@ -10,5 +27,6 @@
   "red": "todas",
   "python": "/usr/local/bin/python3",
   "perfil": "lento",
-  "storyboard_antes_de_editar": true
+  "storyboard_antes_de_editar": true,
+  "editar_todo_de_una": true
 }
