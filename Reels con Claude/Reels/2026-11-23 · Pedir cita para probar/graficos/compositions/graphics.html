@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /></head>
+  <body>
+    <template>
+      <style>
+@font-face { font-family: "Bebas Neue"; src: url("assets/fonts/bebas-neue-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-700.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-800.woff2") format("woff2"); font-weight: 800; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-500.woff2") format("woff2"); font-weight: 500; }
+
+        #gfx-root { position: absolute; inset: 0; font-family: "Figtree", sans-serif; }
+        #gfx-root .card { position: absolute; left: 80px; right: 150px; padding: 36px 40px; border-radius: 28px; background: rgba(18,19,17,.88); border: 2px solid #3A3B35; color: #F6F6F1; }
+        #gfx-root #c1 { padding: 28px 36px; }
+        #gfx-root #c1 .title { font-size: 84px; }
+        #gfx-root #c1 .pills { margin-top: 14px; gap: 10px; }
+        #gfx-root .card.lime { background: #BEBD39; border-color: #828120; color: #121311; }
+        #gfx-root .step { font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; color: #BEBD39; }
+        #gfx-root .lime .step { color: #2C2B0E; }
+        #gfx-root .title { font-family: "Bebas Neue", sans-serif; font-size: 96px; line-height: .92; letter-spacing: .01em; text-transform: uppercase; margin-top: 10px; }
+        #gfx-root .sub { font-weight: 700; font-size: 34px; line-height: 1.2; margin-top: 10px; color: #F6F6F1; }
+        #gfx-root .pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        #gfx-root .pill { display: inline-block; height: 52px; line-height: 52px; padding: 0 22px; border-radius: 999px; background: #262723; color: #F6F6F1; font-weight: 700; font-size: 28px; letter-spacing: .06em; text-transform: uppercase; }
+        #gfx-root .checks { display: grid; gap: 8px; margin-top: 16px; }
+        #gfx-root .chk { position: relative; display: flex; align-items: center; height: 46px; padding-left: 62px; font-weight: 700; font-size: 38px; }
+        #gfx-root .chk .box { position: absolute; left: 0; top: 4px; width: 40px; height: 40px; border-radius: 999px; border: 3px solid #3A3B35; }
+        #gfx-root .chk .fill { position: absolute; left: 0; top: 4px; width: 40px; height: 40px; border-radius: 999px; background: #BEBD39; }
+        #gfx-root .chk .fill::after { content: ""; position: absolute; left: 13px; top: 7px; width: 10px; height: 19px; border: solid #121311; border-width: 0 5px 5px 0; transform: rotate(45deg); }
+        #gfx-root .bar { height: 22px; border-radius: 999px; background: #262723; margin-top: 22px; overflow: hidden; }
+        #gfx-root .bar i { display: block; width: 100%; height: 100%; background: #BEBD39; transform-origin: 0 50%; }
+        #gfx-root .tagrow { position: absolute; left: 80px; right: 150px; display: flex; justify-content: center; }
+        #gfx-root .tag { display: inline-flex; align-items: center; gap: 14px; height: 56px; padding: 0 26px; border-radius: 999px; background: rgba(18,19,17,.88); border: 2px solid #3A3B35;
+              color: #F6F6F1; font-weight: 700; font-size: 28px; letter-spacing: .06em; text-transform: uppercase; }
+        #gfx-root .tag .dot { width: 14px; height: 14px; border-radius: 999px; background: #BEBD39; }
+        #endcard { position: absolute; inset: 0; background: #121311; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; padding-bottom: 120px; }
+        #end-logo { width: 640px; height: auto; }
+        #end-claim { max-width: 700px; font-family: "Bebas Neue", sans-serif; font-size: 112px; line-height: .95; letter-spacing: .01em; text-transform: uppercase; color: #F6F6F1; text-align: center; }
+        #end-web { font-weight: 700; font-size: 44px; color: #BEBD39; letter-spacing: .01em; }
+      </style>
+      <div id="gfx-root" data-composition-id="graphics" data-width="1080" data-height="1920" data-duration="32.2">
+        <div id="tag-hook" class="tagrow clip" data-start="5.250" data-duration="1.730" data-track-index="1" style="top:1452px"><span class="tag"><i class="dot"></i>4 pasos para probarlo</span></div>
+<div id="c1" class="card clip" data-start="7.020" data-duration="5.380" data-track-index="1" style="top:230px"><div class="step">Paso 1</div><div class="title">Llámanos</div><div class="pills"><span id="p0" class="pill">Caminar</span><span id="p1" class="pill">Trabajo</span><span id="p2" class="pill">Senderismo</span><span id="p3" class="pill">Rehabilitación</span></div></div>
+<div id="c2" class="card clip" data-start="13.620" data-duration="3.540" data-track-index="1" style="top:880px"><div class="step">Paso 2</div><div class="title">En la clínica</div><div class="checks"><div id="k0" class="chk"><i class="box"></i><i id="kf0" class="fill"></i><span>Ponértelo</span></div><div id="k1" class="chk"><i class="box"></i><i id="kf1" class="fill"></i><span>Ajustarlo</span></div><div id="k2" class="chk"><i class="box"></i><i id="kf2" class="fill"></i><span>Probarlo</span></div></div></div>
+<div id="c3" class="card clip" data-start="17.220" data-duration="4.840" data-track-index="1" style="top:260px"><div class="step">Paso 3</div><div class="title">La prueba</div><div class="bar"><i id="barfill"></i></div></div>
+<div id="c4" class="card clip" data-start="22.200" data-duration="3.860" data-track-index="1" style="top:930px"><div class="step">Paso 4</div><div class="title">Tú decides</div></div>
+<div id="c4b" class="card lime clip" data-start="26.160" data-duration="1.840" data-track-index="1" style="top:930px"><div class="step">Paso 4</div><div class="title">Pruébalo antes<br>de comprarlo</div></div>
+<div id="endcard" class="clip" data-start="29.620" data-duration="2.580" data-track-index="2"><img id="end-logo" src="assets/logos/exomov-logo-blanco.png" alt="ExoMov" /><div id="end-claim">Libertad de movimiento</div><div id="end-web">exomov.com</div></div>
+      </div>
+      <script>
+        const gtl = gsap.timeline({ paused: true });
+        gtl.fromTo("#tag-hook .tag", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, 5.250);
+gtl.to("#tag-hook .tag", { opacity: 0, duration: 0.18, ease: "power2.in" }, 6.780);
+gtl.fromTo("#c1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 7.020);
+gtl.to("#c1", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 12.200);
+gtl.fromTo("#p0", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 9.900);
+gtl.fromTo("#p1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 10.040);
+gtl.fromTo("#p2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 10.180);
+gtl.fromTo("#p3", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 10.320);
+gtl.fromTo("#c2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 13.620);
+gtl.to("#c2", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 16.960);
+gtl.fromTo("#kf0", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.24, ease: "power3.out" }, 14.450);
+gtl.fromTo("#k0 span", { opacity: .45 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 14.450);
+gtl.fromTo("#kf1", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.24, ease: "power3.out" }, 15.290);
+gtl.fromTo("#k1 span", { opacity: .45 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 15.290);
+gtl.fromTo("#kf2", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.24, ease: "power3.out" }, 16.590);
+gtl.fromTo("#k2 span", { opacity: .45 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 16.590);
+gtl.fromTo("#c3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 17.220);
+gtl.to("#c3", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 21.860);
+gtl.fromTo("#barfill", { scaleX: 0 }, { scaleX: 1, duration: 0.48, ease: "power3.out" }, 21.420);
+gtl.fromTo("#c4", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 22.200);
+gtl.to("#c4", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 25.860);
+gtl.fromTo("#c4b", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 26.160);
+gtl.to("#c4b", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 27.800);
+gtl.fromTo("#endcard", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 29.620);
+gtl.fromTo("#end-logo", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.48, ease: "power3.out" }, 29.750);
+gtl.fromTo("#end-claim", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 30.050);
+gtl.fromTo("#end-web", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 30.100);
+        window.__timelines["graphics"] = gtl;
+      </script>
+    </template>
+  </body>
+</html>

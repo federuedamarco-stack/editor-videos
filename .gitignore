@@ -7,3 +7,6 @@ node_modules/
 Reels con Claude/Tomas/*
 !Reels con Claude/Tomas/LEEME.txt
 Reels con Claude/Reels/*/trabajo/
+Reels con Claude/Reels/*/graficos/.hyperframes/
+Reels con Claude/Reels/*/graficos/assets/base.mp4
+Reels con Claude/Reels/*/graficos/renders/
