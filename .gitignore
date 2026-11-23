@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 node_modules/
 .claude/skills/editar-reels-claude/models/
+
+# Reels con Claude: las tomas y los archivos de trabajo son demasiado grandes para git
+Reels con Claude/Tomas/*
+!Reels con Claude/Tomas/LEEME.txt
+Reels con Claude/Reels/*/trabajo/
