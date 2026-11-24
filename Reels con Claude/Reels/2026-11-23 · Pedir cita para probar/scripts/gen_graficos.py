@@ -82,13 +82,13 @@ add(f'<div id="tag-hook" class="tagrow clip" data-start="5.250" data-duration="1
 # paso 1 · llámanos
 pills = ["Caminar", "Trabajo", "Senderismo", "Rehabilitación"]
 h, js = card("c1", 7.02, 12.40, 230,
-             '<div class="step">Paso 1</div><div class="title">Llámanos</div>'
+             '<div class="step">Paso 1</div><div class="title">Llámanos o escríbenos</div>'
              '<div class="pills">' + "".join(f'<span id="p{k}" class="pill">{p}</span>' for k, p in enumerate(pills)) + "</div>")
 add(h, js + [f'gtl.fromTo("#p{k}", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(9.90 + 0.14 * k)});' for k in range(4)])
 
 # paso 2 · en la clínica (checks en su palabra)
 checks = [("Ponértelo", 14.48), ("Ajustarlo", 15.32), ("Probarlo", 16.62)]
-h, js = card("c2", 13.62, 17.16, 880,
+h, js = card("c2", 13.62, 17.16, 230,
              '<div class="step">Paso 2</div><div class="title">En la clínica</div><div class="checks">' +
              "".join(f'<div id="k{k}" class="chk"><i class="box"></i><i id="kf{k}" class="fill"></i><span>{t}</span></div>' for k, (t, _) in enumerate(checks)) + "</div>")
 add(h, js + sum([[f'gtl.fromTo("#kf{k}", {{ scale: 0, opacity: 0 }}, {{ scale: 1, opacity: 1, duration: 0.24, ease: "power3.out" }}, {f3(t - 0.03)});',
@@ -100,7 +100,7 @@ h, js = card("c3", 17.22, 22.06, 260,
 add(h, js + ['gtl.fromTo("#barfill", { scaleX: 0 }, { scaleX: 1, duration: 0.48, ease: "power3.out" }, 21.420);'])
 
 # paso 4 · tú decides → tarjeta lima
-h, js = card("c4", 22.20, 26.06, 930, '<div class="step">Paso 4</div><div class="title">Tú decides</div>')
+h, js = card("c4", 22.20, 26.06, 230, '<div class="step">Paso 4</div><div class="title">Tú decides</div>')
 add(h, js)
 h, js = card("c4b", 26.16, 28.00, 930, '<div class="step">Paso 4</div><div class="title">Pruébalo antes<br>de comprarlo</div>', cls="card lime")
 add(h, js)
