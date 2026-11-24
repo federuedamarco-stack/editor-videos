@@ -45,7 +45,6 @@
       <div id="gfx-root" data-composition-id="graphics" data-width="1080" data-height="1920" data-duration="60.0">
         <div id="hook" class="clip" data-start="0.150" data-duration="3.600" data-track-index="1"><div id="hook-a">VIGX H1 PRO</div><div id="hook-b">en 60 segundos</div></div>
 <div id="c1" class="card clip" data-start="17.400" data-duration="3.900" data-track-index="1" style="top:230px"><div class="step">Altura de la cincha</div><div class="title">3-4 dedos</div><div class="sub">por encima de la rodilla</div></div>
-<div id="ring" class="clip" data-start="22.300" data-duration="2.300" data-track-index="1"></div>
 <div id="t-accion" class="tagrow clip" data-start="31.750" data-duration="3.850" data-track-index="1" style="top:260px"><span class="tag"><i class="dot"></i>En acción</span></div>
 <div id="t-pot" class="tagrow clip" data-start="37.850" data-duration="2.100" data-track-index="1" style="top:260px"><span class="tag"><i class="dot"></i>Potencia</span></div>
 <div id="t-mod" class="tagrow clip" data-start="41.250" data-duration="2.350" data-track-index="1" style="top:260px"><span class="tag"><i class="dot"></i>Modos de uso</span></div>
@@ -60,8 +59,6 @@ gtl.fromTo("#hook-b", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.36,
 gtl.to("#hook", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 3.550);
 gtl.fromTo("#c1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.42, ease: "power3.out" }, 17.400);
 gtl.to("#c1", { opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }, 21.100);
-gtl.fromTo("#ring", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power3.out" }, 22.300);
-gtl.to("#ring", { opacity: 0, duration: 0.2, ease: "power2.in" }, 24.400);
 gtl.fromTo("#t-accion .tag", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, 31.750);
 gtl.to("#t-accion .tag", { opacity: 0, duration: 0.18, ease: "power2.in" }, 35.420);
 gtl.fromTo("#t-pot .tag", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }, 37.850);

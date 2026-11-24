@@ -84,11 +84,6 @@ add('<div id="hook" class="clip" data-start="0.150" data-duration="3.600" data-t
 h, js = card("c1", 17.40, 21.30, 230, '<div class="step">Altura de la cincha</div><div class="title">3-4 dedos</div><div class="sub">por encima de la rodilla</div>')
 add(h, js)
 
-# interruptor · círculo
-add('<div id="ring" class="clip" data-start="22.300" data-duration="2.300" data-track-index="1"></div>',
-    ['gtl.fromTo("#ring", { opacity: 0, scale: 1.35 }, { opacity: 1, scale: 1, duration: 0.38, ease: "power3.out" }, 22.300);',
-     'gtl.to("#ring", { opacity: 0, duration: 0.2, ease: "power2.in" }, 24.400);'])
-
 def tag(id_, t0, t1, top, txt):
     add(f'<div id="{id_}" class="tagrow clip" data-start="{f3(t0)}" data-duration="{f3(t1 - t0)}" data-track-index="1" style="top:{top}px"><span class="tag"><i class="dot"></i>{txt}</span></div>',
         [f'gtl.fromTo("#{id_} .tag", {{ opacity: 0, y: 20 }}, {{ opacity: 1, y: 0, duration: 0.32, ease: "power3.out" }}, {f3(t0)});',
