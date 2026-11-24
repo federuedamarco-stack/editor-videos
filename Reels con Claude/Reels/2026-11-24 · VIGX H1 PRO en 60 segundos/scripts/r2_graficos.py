@@ -99,7 +99,8 @@ add('<div id="six" class="clip" data-start="43.700" data-duration="3.950" data-t
      'gtl.to("#six", { opacity: 0, duration: 0.2, ease: "power2.in" }, 47.450);'])
 
 # montaje · llamada a la acción
-h, js = card("cta", 53.00, 57.92, 300, '<div class="step">ExoMov</div><div class="title">Pruébalo en ExoMov</div>', cls="card lime")
+h, js = card("cta", 52.40, 57.92, 300, '<div class="step">ExoMov</div><div class="ctat">Descubre<br>cómo probarlo</div>'
+             '<div class="ctas"><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path d="M12 3.5c-4.97 0-9 3.47-9 7.75 0 2.08.95 3.97 2.5 5.36L4.8 20.5l4.2-1.86c.94.24 1.95.36 3 .36 4.97 0 9-3.47 9-7.75S16.97 3.5 12 3.5z" fill="none" stroke="#121311" stroke-width="2" stroke-linejoin="round"/></svg>Consúltanos por WhatsApp</div>', cls="card lime")
 add(h, js)
 
 # cierre (2 s)
@@ -136,6 +137,8 @@ graphics = f"""<!doctype html>
         #gfx-root .tag {{ display: inline-flex; align-items: center; gap: 14px; height: 56px; padding: 0 26px; border-radius: 999px; background: rgba(18,19,17,.88); border: 2px solid {BORDER};
               color: {PAPER}; font-weight: 700; font-size: 28px; letter-spacing: .06em; text-transform: uppercase; }}
         #gfx-root .tag .dot {{ width: 14px; height: 14px; border-radius: 999px; background: {LIME}; }}
+        #gfx-root .ctat {{ font-family: "Figtree", sans-serif; font-weight: 800; font-size: 76px; line-height: 1.04; text-transform: uppercase; letter-spacing: .005em; margin-top: 14px; color: {INK}; }}
+        #gfx-root .ctas {{ display: flex; align-items: center; gap: 14px; margin-top: 18px; font-weight: 700; font-size: 40px; color: {INK}; }}
         #hook {{ position: absolute; left: 40px; right: 40px; top: 330px; display: flex; flex-direction: column; align-items: center; font-family: "Bebas Neue", sans-serif; text-transform: uppercase; letter-spacing: .01em;
               text-shadow: 0 0 46px rgba(18,19,17,.7), 0 6px 22px rgba(18,19,17,.65), 0 2px 4px rgba(18,19,17,.55); }}
         #hook-a {{ font-size: 220px; line-height: .9; color: {LIME}; white-space: nowrap; }}
