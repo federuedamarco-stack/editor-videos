@@ -1,0 +1,11 @@
+{
+  "tema": "Evento en IFEMA (feria de ortopedia): exoesqueletos ExoMov",
+  "tomas": "Tomas/2026-11-27 · IFEMA Ortopedia (18 clips)",
+  "resolucion": "1080",
+  "estilo": "Mi estilo/Reglas-de-estilo.md (ExoMov)",
+  "referencia_de_montaje": "Edgar Wright: cortes a compás, barridos de cámara como transición, sonido sincronizado con la acción",
+  "musica": "Rock original generado en código (scripts/rock_track.py), 128-168 bpm según versión",
+  "voz": "Solo el audio de 9762 (actor) y de las pruebas: 9716, 9719, 9734, 9735, 9743, 9744",
+  "versiones": ["A Crónica al ritmo ~45 s", "B Relámpago ~30 s", "C Empieza por la prueba ~40 s", "D Un día en IFEMA ~60 s", "E Cómo se pone ~30 s"],
+  "estado": "storyboard pendiente de aprobar"
+}
