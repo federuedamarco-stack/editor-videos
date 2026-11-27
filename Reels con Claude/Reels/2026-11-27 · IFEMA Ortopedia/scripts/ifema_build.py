@@ -17,13 +17,15 @@ CLIPS = {"9703": "IMG_9703.MOV", "9709": "IMG_9709.mov", "9713": "IMG_9713.MOV",
          "9743": "IMG_9743.mov", "9744": "IMG_9744.MOV", "9757": "IMG_9757.MOV", "9758": "IMG_9758.MOV", "9759": "IMG_9759.MOV",
          "9762": "IMG_9762.MOV", "9766": "IMG_9766.MOV", "9767": "IMG_9767.MOV"}
 INK, LIME, PAPER, BORDER, S2 = "#121311", "#BEBD39", "#F6F6F1", "#3A3B35", "#262723"
-LID = 7.95          # segundo de 9762 en que el actor termina de cerrar el maletero
-QUAD = [("9757", 0.7, 1.0), ("9757", 2.3, 0.6), ("9758", 0.3, 1.0), ("9759", 2.8, 1.0)]    # (clip, entrada, velocidad)
-QLAB = ["1 CINTURA", "2 AJUSTE", "3 PIERNA", "4 PIERNA"]
+CUT = 7.5            # segundo de 9762 en que se corta, con la tapa del maletero a mitad de caída
+IN703 = 1.35         # segundo de 9703 en que entra la tapa (continúa el movimiento)
+SLAM703 = 1.84       # el golpe de la tapa en el audio de 9703
+TRI = [("9757", 0.8, 1.0, 700), ("9758", 0.3, 1.0, None), ("9759", 2.8, 1.0, None)]    # (clip, entrada, velocidad, recorte y de la franja superior)
+QLAB = ["1 CINTURA", "2 PIERNA", "3 PIERNA"]
 
 
-def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False):
-    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge)
+def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None):
+    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud)
 
 
 def vo(c, i, d, at, lr=None):
@@ -32,36 +34,40 @@ def vo(c, i, d, at, lr=None):
 
 def opening(beat, beats_actor, extra_closed):
     """Plano del actor hasta que cierra el maletero + plano del maletero ya cerrado."""
-    return [cut("9762", round(LID - beats_actor * beat, 2), beats_actor), cut("9703", 1.95, extra_closed, fx="P")]
+    return [cut("9762", round(CUT - beats_actor * beat, 2), beats_actor), cut("9703", IN703, extra_closed, fx="T", thud=SLAM703)]
 
 
-def quadcut(n): return cut("QUAD", 0, n, q=QUAD, fx="P")
+def tricut(n): return cut("TRI", 0, n, q=TRI, fx="P")
+
+
+def vo_at(beat, beats_actor, src_in): return round((src_in - round(CUT - beats_actor * beat, 2)) / beat, 3)
 
 
 A_b, B_b, D_b = 60 / 152, 60 / 168, 60 / 140
 SPECS = {
- "A": dict(dir="v-A-cronica", nombre="IFEMA A · Crónica al ritmo", bpm=152, bars=27, tail=0.8, seed=11, end_b=7, boost=11,
+ "A": dict(dir="v-A-cronica", nombre="IFEMA A · Crónica al ritmo", bpm=152, bars=28, tail=0.8, seed=11, end_b=7, boost=11,
    keys={"ifema", "equipos", "títere", "ritmo", "cadencia", "sana"},
    title=dict(a=("NOS VAMOS A", PAPER, 112), b=("IFEMA", LIME, 260), beats=(0.5, 9)),
-   vo=[vo("9762", 6.37, 6.25, 0, lr=(8.6, 12.3))],
-   cuts=opening(A_b, 4, 6) + [quadcut(10),
-         cut("9766", 8.75, 5, fx="W"), cut("9709", 0.0, 2, fx="W"), cut("9713", 2.4, 5, fx="W"), cut("9715", 1.6, 6, fx="W"), cut("9714", 0.3, 5, fx="W"),
+   vo=[vo("9762", 6.37, 6.25, vo_at(A_b, 3, 6.37), lr=(8.6, 12.3))],
+   cuts=opening(A_b, 3, 7) + [tricut(10),
+         cut("9709", 0.0, 5, fx="W", sp=0.5, ov=dict(a=("ORTO MEDICAL CARE", PAPER, 104), b=("2026", LIME, 230))),
+         cut("9713", 2.4, 5, fx="W"), cut("9715", 1.6, 6, fx="W"), cut("9714", 0.3, 5, fx="W"),
          cut("9716", 0.2, 5, fx="W", badge=True),
          cut("9743", 0.0, 10, v=True, vd=3.85, badge=True), cut("9734", 5.52, 9, v=True, vd=3.5), cut("9735", 4.98, 9, v=True, vd=3.57), cut("9744", 0.65, 10, v=True, vd=3.5),
-         cut("9719", 0.2, 4, fx="P"), cut("9714", 1.0, 4, fx="P"), cut("9767", 2.4, 7, fx="P")]),
+         cut("9719", 0.2, 4, fx="P"), cut("9767", 0.0, 6, fx="P"), cut("9766", 0.5, 11, fx="P")]),
  "B": dict(dir="v-B-relampago", nombre="IFEMA B · Relámpago", bpm=168, bars=20, tail=1.0, seed=23, end_b=5, boost=11,
    keys={"ifema", "equipos", "títere", "sana"},
    title=dict(a=("EXOESQUELETOS", LIME, 150), b=("EN IFEMA", PAPER, 150), beats=(0.5, 8.5)),
-   vo=[vo("9762", 6.34, 1.43, 0.5, lr=(8.6, 12.3)), vo("9762", 8.55, 1.38, 5.28, lr=(8.6, 12.3))],
-   cuts=opening(B_b, 5, 4) + [quadcut(11),
+   vo=[vo("9762", 6.34, 1.43, vo_at(B_b, 4, 6.34), lr=(8.6, 12.3)), vo("9762", 8.55, 1.38, round(2.0 / B_b, 3), lr=(8.6, 12.3))],
+   cuts=opening(B_b, 4, 5) + [tricut(11),
          cut("9766", 8.85, 4, fx="W"), cut("9709", 0.0, 2, fx="W"), cut("9715", 1.7, 4, fx="W"), cut("9713", 2.7, 4, fx="W"), cut("9714", 0.4, 4, fx="W"),
          cut("9743", 0.0, 11, v=True, vd=3.85), cut("9734", 9.0, 4, fx="P"), cut("9744", 0.65, 10, v=True, vd=3.5), cut("9735", 9.0, 4, fx="P"),
          cut("9767", 2.4, 8, fx="P")]),
  "D": dict(dir="v-D-un-dia", nombre="IFEMA D · Un día en IFEMA", bpm=140, bars=33, tail=0.8, seed=37, end_b=4, boost=11,
    keys={"ifema", "equipos", "tecnología", "profesionales", "potencia", "estándar", "ritmo", "cadencia", "títere", "sana"},
    title=dict(a=("UN DÍA EN", PAPER, 130), b=("IFEMA", LIME, 260), beats=(0.5, 12)),
-   vo=[vo("9762", 6.34, 6.3, round((6.34 - (LID - 4 * D_b)) / D_b, 3), lr=(8.6, 12.3))],
-   cuts=opening(D_b, 4, 6) + [quadcut(9),
+   vo=[vo("9762", 6.34, 6.3, vo_at(D_b, 4, 6.34), lr=(8.6, 12.3))],
+   cuts=opening(D_b, 4, 6) + [tricut(9),
          cut("9766", 3.0, 6), cut("9766", 8.75, 6, fx="W"),
          cut("9709", 0.0, 2, fx="W"), cut("9713", 2.4, 7, fx="W"), cut("9715", 1.5, 6, fx="W"), cut("9714", 0.2, 6, fx="W"),
          cut("9716", 0.2, 6, fx="W"), cut("9719", 0.0, 6, fx="P"),
@@ -129,14 +135,17 @@ VF1 = f"tpad=stop_mode=clone:stop_duration=3,fps={F},scale=1080:1920:force_origi
 
 
 def make_piece(cu, out):
-    if cu["c"] != "QUAD":
-        sh(["ffmpeg", "-v", "error", "-y", "-ss", f"{cu['i']:.3f}", "-i", f"{TOMAS}/{CLIPS[cu['c']]}", "-an", "-vf", VF1, "-frames:v", str(cu["n"]),
+    if cu["c"] != "TRI":
+        sp = cu.get("sp", 1.0); vf = VF1 if sp == 1.0 else VF1.replace("fps=", f"setpts=PTS/{sp},fps=", 1)
+        sh(["ffmpeg", "-v", "error", "-y", "-ss", f"{cu['i']:.3f}", "-i", f"{TOMAS}/{CLIPS[cu['c']]}", "-an", "-vf", vf, "-frames:v", str(cu["n"]),
             "-c:v", "libx264", "-preset", "fast", "-crf", "15", out]); return
     inp, fc = [], []
-    for k, (c, i, sp) in enumerate(cu["q"]):
+    for k, (c, i, sp, cy) in enumerate(cu["q"]):
         inp += ["-ss", f"{i:.3f}", "-i", f"{TOMAS}/{CLIPS[c]}"]
-        fc.append(f"[{k}:v]tpad=stop_mode=clone:stop_duration=3,setpts=PTS/{sp},fps={F},scale=540:960:force_original_aspect_ratio=increase:flags=lanczos,crop=540:960,setsar=1,format=yuv420p[p{k}]")
-    fc.append("[p0][p1][p2][p3]xstack=inputs=4:layout=0_0|w0_0|0_h0|w0_h0[v]")
+        base = f"[{k}:v]tpad=stop_mode=clone:stop_duration=3,setpts=PTS/{sp},fps={F},"
+        if k == 0: fc.append(base + f"scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:960:0:{cy},setsar=1,format=yuv420p[p0]")
+        else: fc.append(base + f"scale=540:960:force_original_aspect_ratio=increase:flags=lanczos,crop=540:960,setsar=1,format=yuv420p[p{k}]")
+    fc.append("[p1][p2]hstack=inputs=2[bot];[p0][bot]vstack=inputs=2[v]")
     sh(["ffmpeg", "-v", "error", "-y", *inp, "-filter_complex", ";".join(fc), "-map", "[v]", "-an", "-frames:v", str(cu["n"]), "-c:v", "libx264", "-preset", "fast", "-crf", "15", out])
 
 
@@ -212,15 +221,23 @@ window.__timelines["captions"] = ctl;</script></template></body></html>'''
            f'gtl.fromTo("#hook-b", {{ opacity: 0, y: 30, scale: .92 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }}, {f3(t0 + beat * .5)});',
            f'gtl.to("#hook", {{ opacity: 0, duration: 0.12, ease: "power2.in" }}, {f3(t1 - 0.12)});']
     for qi, cu in enumerate(TL):
-        if cu["c"] != "QUAD": continue
+        if cu["c"] != "TRI": continue
         a, b = cu["ts"], cu["te"]
-        gh.append(f'<div id="qv{qi}" class="qline clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="left:537px;top:0;width:6px;height:1920px"></div>'
+        gh.append(f'<div id="qv{qi}" class="qline clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="left:537px;top:960px;width:6px;height:960px"></div>'
                   f'<div id="qh{qi}" class="qline clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="left:0;top:957px;width:1080px;height:6px"></div>')
-        pos = [(24, 872), (564, 872), (24, 984), (564, 984)]
+        pos = [(24, 872), (24, 984), (564, 984)]
         for p, (x, y) in enumerate(pos):
             num, word = QLAB[p].split(" ", 1)
             gh.append(f'<div id="ql{qi}-{p}" class="plab clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="left:{x}px;top:{y}px"><span class="n">{num}</span><span class="wd">{word}</span></div>')
             gj.append(f'gtl.fromTo("#ql{qi}-{p}", {{ opacity: 0, scale: 1.25 }}, {{ opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }}, {f3(a + 0.12 * (p + 1))});')
+    for oi, cu in enumerate(TL):                      # texto sobre un plano (p. ej. el cartel de la feria)
+        if not cu["ov"]: continue
+        a, b = cu["ts"] + 0.05, cu["te"] + 0.3 * beat
+        o = cu["ov"]
+        gh.append(f'<div id="ov{oi}" class="ovt clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1"><div id="ov{oi}a" style="color:{o["a"][1]};font-size:{o["a"][2]}px">{o["a"][0]}</div><div id="ov{oi}b" style="color:{o["b"][1]};font-size:{o["b"][2]}px">{o["b"][0]}</div></div>')
+        gj += [f'gtl.fromTo("#ov{oi}a", {{ opacity: 0, y: 30, scale: .94 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }}, {f3(a)});',
+               f'gtl.fromTo("#ov{oi}b", {{ opacity: 0, y: 30, scale: .94 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }}, {f3(a + 0.15)});',
+               f'gtl.to("#ov{oi}", {{ opacity: 0, duration: 0.12, ease: "power2.in" }}, {f3(b - 0.12)});']
     bi = [i for i, c in enumerate(TL) if c["badge"]]
     if bi:
         a, b = TL[bi[0]]["ts"] + 0.1, TL[bi[-1]]["te"]
@@ -252,6 +269,8 @@ window.__timelines["captions"] = ctl;</script></template></body></html>'''
 #gfx-root .plab .wd {{ font-size: 70px; line-height: .9; color: {PAPER}; }}
 #hook {{ position: absolute; left: 40px; right: 40px; top: 290px; display: flex; flex-direction: column; align-items: center; font-family: "Bebas Neue", sans-serif; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 0 46px rgba(18,19,17,.7), 0 6px 22px rgba(18,19,17,.65), 0 2px 4px rgba(18,19,17,.55); }}
 #hook-a, #hook-b {{ line-height: .92; white-space: nowrap; }}
+#gfx-root .ovt {{ position: absolute; left: 30px; right: 30px; top: 1090px; display: flex; flex-direction: column; align-items: center; font-family: "Bebas Neue", sans-serif; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 0 46px rgba(18,19,17,.75), 0 6px 22px rgba(18,19,17,.7), 0 2px 4px rgba(18,19,17,.6); }}
+#gfx-root .ovt div {{ line-height: .92; white-space: nowrap; }}
 #endcard {{ position: absolute; inset: 0; background: {INK}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; padding-bottom: 120px; }}
 #end-logo {{ width: 640px; height: auto; }}
 #end-claim {{ max-width: 700px; font-family: "Bebas Neue", sans-serif; font-size: 112px; line-height: .95; letter-spacing: .01em; text-transform: uppercase; color: {PAPER}; text-align: center; }}
@@ -267,6 +286,8 @@ window.__timelines["graphics"] = gtl;</script></template></body></html>'''
         if "W" in cu["fx"] and ts > 0.2:
             zj.append(f'tl.fromTo("#zoom", {{ x: 0, scale: 1, filter: "blur(0px)" }}, {{ x: -150, scale: 1.14, filter: "blur(24px)", duration: 0.09, ease: "power2.in", immediateRender: false }}, {f3(ts - 0.09)});')
             zj.append(f'tl.fromTo("#zoom", {{ x: 150, scale: 1.14, filter: "blur(24px)" }}, {{ x: 0, scale: 1, filter: "blur(0px)", duration: 0.17, ease: "power3.out", immediateRender: false }}, {f3(ts)});')
+        if "T" in cu["fx"]:
+            zj.append(f'tl.fromTo("#zoom", {{ scale: 1.12 }}, {{ scale: 1, duration: 0.3, ease: "power3.out", immediateRender: false }}, {f3(ts + cu["thud"] - cu["i"])});')
         if "P" in cu["fx"]:
             zj.append(f'tl.fromTo("#zoom", {{ scale: 1.08 }}, {{ scale: 1, duration: 0.2, ease: "power3.out", immediateRender: false }}, {f3(ts)});')
     index = f'''<!doctype html>
@@ -297,6 +318,8 @@ def audio(k):
     S, P, W, G = paths(k); TL, beat, t_end, DUR, VS = timeline(S)
     sh(["python3", f"{BUILD}/rock_track.py", "--bpm", str(S["bpm"]), "--bars", str(S["bars"]), "--tail", str(S["tail"] + 0.4), "--seed", str(S["seed"]), "--style", "garage", "--out", f"{W}/musica.wav"])
     if not os.path.exists(W + "/sfx"): sh(["cp", "-r", f"{VIGX}/trabajo/sfx", W + "/sfx"])
+    slam = f"{W}/sfx/slam.wav"
+    if not os.path.exists(slam): sh(["ffmpeg", "-v", "error", "-y", "-ss", f"{SLAM703 - 0.06:.2f}", "-t", "0.7", "-i", f"{TOMAS}/IMG_9703.MOV", "-vn", "-af", "highpass=f=40,afade=t=out:st=0.4:d=0.3,loudnorm=I=-18:TP=-2:LRA=7", "-ar", "48000", "-ac", "2", slam])
     E, R, f = "1", 0.25, 10 ** (S["boost"] / 20) - 1
     voice = sorted((v["ts"], v["ts"] + v["d"] + 0.15) for v in VS)
     edges, prev = [], 0.0
@@ -312,10 +335,10 @@ def audio(k):
         if 0 <= t < DUR: ev.append({"file": f"sfx/{name}.wav", "t": round(t, 3), "db": db, **({"max": mx} if mx else {})})
     for cu in TL:
         if "W" in cu["fx"] and cu["ts"] > 0.2: add("whoosh", cu["ts"] - 0.07, -22)
-        if cu["c"] == "QUAD":
+        if cu["c"] == "TRI":
             add("whoosh", cu["ts"] - 0.05, -21)
-            for p in range(4): add("uiclick", cu["ts"] + 0.12 * (p + 1), -23, 0.3)
-    if k == "B": add("impact", TL[1]["ts"], -22)       # el golpe del maletero cae en el hueco recortado
+            for p in range(3): add("uiclick", cu["ts"] + 0.12 * (p + 1), -23, 0.3)
+        if "T" in cu["fx"]: add("slam", cu["ts"] + cu["thud"] - cu["i"] - 0.06, -9)     # golpe real de la tapa (audio de 9703)
     add("riser", t_end - 2.6, -27); add("uiclick", t_end, -23, 0.3); add("impact", S["bars"] * 4 * beat, -18)
     json.dump(sorted(ev, key=lambda e: e["t"]), open(f"{W}/sfx.json", "w"), indent=1)
     r = subprocess.run(["python3", f"{SKILL}/mix.py", "--work", W, "--sfx", f"{W}/sfx.json", "--music", f"{W}/musica_env.wav", "--music-under", "-1", "--duck", "9", "--tp", "-5"], capture_output=True, text=True)

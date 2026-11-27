@@ -13,7 +13,7 @@
     "D Un día en IFEMA ~60 s",
     "E Cómo se pone ~30 s"
   ],
-  "estado": "versiones v2 de A, B y D en render",
+  "estado": "A v3 en render (B y D pendientes de aplicar los mismos cambios)",
   "versiones_hechas": [
     "A Crónica al ritmo ~46 s (152 bpm)",
     "B Relámpago ~31 s (168 bpm)",
@@ -26,5 +26,11 @@
     "Acaba con las dos personas de ExoMov (9767)",
     "A: cuadro «Reacciones de los profesionales»",
     "Audio con techo de pico -5 dBTP para evitar saturación al comprimir"
+  ],
+  "cambios_v3_A": [
+    "Corte al maletero con la tapa a mitad de caída y golpe real (audio de 9703)",
+    "Pantalla dividida: 1 toma arriba (hebilla) + 2 abajo (piernas)",
+    "Quitado el plano de 9766 en el pabellón; el cartel ORTO (9709) a cámara lenta con el texto ORTO MEDICAL CARE 2026",
+    "Sin la repetición de maniquíes al final; acaba con 9767 (hacia cámara) y 9766 (de espaldas)"
   ]
 }
