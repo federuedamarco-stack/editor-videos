@@ -15,7 +15,7 @@ F = 30
 CLIPS = {"9703": "IMG_9703.MOV", "9709": "IMG_9709.mov", "9713": "IMG_9713.MOV", "9714": "IMG_9714.MOV", "9715": "IMG_9715.mov",
          "9716": "IMG_9716.mov", "9719": "IMG_9719.mov", "9734": "IMG_9734.MOV", "9735": "IMG_9735.MOV", "9737": "IMG_9737.MOV",
          "9743": "IMG_9743.mov", "9744": "IMG_9744.MOV", "9757": "IMG_9757.MOV", "9758": "IMG_9758.MOV", "9759": "IMG_9759.MOV",
-         "9762": "IMG_9762.MOV", "9766": "IMG_9766.MOV", "9767": "IMG_9767.MOV"}
+         "9762": "IMG_9762.MOV", "9766": "IMG_9766.MOV", "9767": "IMG_9767.MOV", "9738": "IMG_9738_comprimido.mp4", "9755": "IMG_9755.mov", "9701": "IMG_9701.mov", "9726": "IMG_9726.MOV"}
 INK, LIME, PAPER, BORDER, S2 = "#121311", "#BEBD39", "#F6F6F1", "#3A3B35", "#262723"
 CUT = 7.5            # segundo de 9762 en que se corta, con la tapa del maletero a mitad de caída
 IN703 = 1.35         # segundo de 9703 en que entra la tapa (continúa el movimiento)
@@ -24,8 +24,8 @@ TRI = [("9757", 0.8, 1.0, 700), ("9758", 0.3, 1.0, None), ("9759", 2.8, 1.0, Non
 QLAB = ["1 CINTURA", "2 PIERNA", "3 PIERNA"]
 
 
-def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None):
-    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud)
+def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None, bleep=None, fix=None):
+    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud, bleep=bleep, fix=fix)
 
 
 def vo(c, i, d, at, lr=None):
@@ -55,6 +55,15 @@ SPECS = {
          cut("9716", 0.2, 5, fx="W", badge=True),
          cut("9743", 0.0, 10, v=True, vd=3.85, badge=True), cut("9734", 5.52, 9, v=True, vd=3.5), cut("9735", 4.98, 9, v=True, vd=3.57), cut("9744", 0.65, 10, v=True, vd=3.5),
          cut("9719", 0.2, 4, fx="P"), cut("9767", 4.5, 7, fx="P"), cut("9766", 0.5, 10, fx="P")]),
+ "A2": dict(dir="v-A2-remix", nombre="IFEMA A2 · Remix", bpm=118, bars=16, tail=0.8, seed=5, end_b=5, boost=11, style="indie", key=-2,
+   keys={"equipos", "tecnología", "profesionales", "rara", "curiosa", "repotenciado"}, cta_back=2.6, badge_txt="Reacción de<br>un profesional",
+   title=dict(a=("LLEGAMOS A", PAPER, 112), b=("IFEMA", LIME, 260), beats=(0.5, 9)),
+   vo=[vo("9762", 6.37, 6.25, 0, lr=(8.6, 12.3))],
+   cuts=[cut("9755", 0.0, 4, sp=0.5), cut("9701", 0.0, 5), cut("9703", 1.35, 4, fx="T", thud=1.84),
+         cut("9709", 0.0, 4, fx="W", sp=0.5, ov=dict(a=("ORTO MEDICAL CARE", PAPER, 104), b=("2026", LIME, 230))),
+         cut("9726", 1.5, 4, fx="W"),
+         cut("9738", 0.0, 16, v=True, vd=8.13, lr=(0.0, 8.1), badge=True, fx="W", bleep=[(0.42, 1.16)], fix={"paseí": "*****", "un": None}),
+         cut("9738", 14.3, 22, v=True, vd=11.18, lr=(20.0, 25.5), badge=True, fx="W")]),
  "B": dict(dir="v-B-relampago", nombre="IFEMA B · Relámpago", bpm=168, bars=20, tail=1.0, seed=23, end_b=5, boost=11,
    keys={"ifema", "equipos", "títere", "sana"},
    title=dict(a=("EXOESQUELETOS", LIME, 150), b=("EN IFEMA", PAPER, 150), beats=(0.5, 8.5)),
@@ -86,7 +95,7 @@ def timeline(S):
         sf, ef = round(b * beat * F), round((b + cu["b"]) * beat * F)
         out.append(dict(cu, ts=sf / F, te=ef / F, n=ef - sf, b0=b)); b += cu["b"]
     assert b + S["end_b"] == S["bars"] * 4, (b, S["end_b"], S["bars"] * 4)
-    vs = [dict(c=cu["c"], i=cu["i"], d=cu["vd"], ts=cu["ts"], lr=cu["lr"]) for cu in out if cu["v"]]
+    vs = [dict(c=cu["c"], i=cu["i"], d=cu["vd"], ts=cu["ts"], lr=cu["lr"], bleep=cu.get("bleep"), fix=cu.get("fix")) for cu in out if cu["v"]]
     vs += [dict(c=x["c"], i=x["i"], d=x["d"], ts=round(x["at"] * beat, 3), lr=x["lr"]) for x in S.get("vo", [])]
     vs.sort(key=lambda v: v["ts"])
     return out, beat, b * beat, round((S["bars"] * 4 * beat + S["tail"]) * F) / F, vs
@@ -109,7 +118,8 @@ def clean_word(w): return re.sub(r"[¿?¡!,.;:]", "", w).strip()
 def captions_for(S, VS):
     caps = []
     for vc in VS:
-        A = json.load(open(f"{TOMAS}/_analisis/IMG_{vc['c']}.json"))["words"]
+        A = json.load(open(f"{TOMAS}/_analisis/{os.path.splitext(CLIPS[vc['c']])[0]}.json"))["words"]
+        FX = vc.get("fix") or {}
         ws = [(clean_word(w["w"]), vc["ts"] + (w["s"] - vc["i"]), vc["ts"] + (min(w["e"], w["s"] + 0.7) - vc["i"]), w["w"]) for w in A if vc["i"] - 0.02 <= w["s"] < vc["i"] + vc["d"] - 0.05]
         chunk = []
         def flush():
@@ -118,6 +128,9 @@ def captions_for(S, VS):
             chunk = []
         for t, s, e, raw in ws:
             if not t: continue
+            if t.lower() in FX:
+                t = FX[t.lower()]
+                if t is None: continue
             if t.lower() in S["keys"]:
                 flush(); caps.append(dict(text=t, key=True, start=s, end=e, words=[dict(w=t, t=s)])); continue
             if chunk and (s - chunk[-1][2] > 0.4 or len(chunk) >= 3): flush()
@@ -167,6 +180,10 @@ def media(k):
         g = -20 - lufs(src, *(vc["lr"] or (a, a + d)))
         raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{a:.3f}", "-t", f"{d:.3f}", "-i", src, "-vn", "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"], capture_output=True).stdout
         x = np.frombuffer(raw, np.float32).copy() * 10 ** (g / 20)
+        for (ba, bb) in (vc.get("bleep") or []):             # palabra tapada: silencio + pitido de 1 kHz
+            i1, i2 = int(round((ba - a) * SR)), int(round((bb - a) * SR)); x[i1:i2] = 0
+            tt = np.arange(i2 - i1) / SR; tone = np.sin(2 * np.pi * 1000 * tt).astype(np.float32) * 10 ** (-16 / 20)
+            ff = int(0.012 * SR); tone[:ff] *= np.linspace(0, 1, ff); tone[-ff:] *= np.linspace(1, 0, ff); x[i1:i2] = tone
         fd = int(0.015 * SR); x[:fd] *= np.linspace(0, 1, fd); x[-fd:] *= np.linspace(1, 0, fd)
         i0 = int(round(vc["ts"] * SR)); track[i0:i0 + len(x)] += x[: len(track) - i0]
     wavfile.write(f"{W}/audio48k.wav", SR, track)
@@ -242,10 +259,12 @@ window.__timelines["captions"] = ctl;</script></template></body></html>'''
     bi = [i for i, c in enumerate(TL) if c["badge"]]
     if bi:
         a, b = TL[bi[0]]["ts"] + 0.1, TL[bi[-1]]["te"]
-        gh.append(f'<div id="badge" class="card clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="top:270px"><div class="step" style="color:{LIME}">En IFEMA</div><div class="btitle">Reacciones de<br>los profesionales</div></div>')
+        if S.get("cta_back"): b = min(b, END - S["cta_back"] - 0.05)
+        gh.append(f'<div id="badge" class="card clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="top:270px"><div class="step" style="color:{LIME}">En IFEMA</div><div class="btitle">{S.get("badge_txt", "Reacciones de<br>los profesionales")}</div></div>')
         gj.append(f'gtl.fromTo("#badge", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(a)});')
         gj.append(f'gtl.to("#badge", {{ opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }}, {f3(b - 0.2)});')
     cta_t0 = TL[-1]["ts"] + 0.3 * beat
+    if S.get("cta_back"): cta_t0 = END - S["cta_back"]
     gh.append(f'<div id="cta" class="card lime clip" data-start="{f3(cta_t0)}" data-duration="{f3(END - cta_t0 - 0.05)}" data-track-index="1" style="top:300px"><div class="step">ExoMov</div><div class="ctat">Descubre<br>cómo probarlo</div>'
               '<div class="ctas"><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path d="M12 3.5c-4.97 0-9 3.47-9 7.75 0 2.08.95 3.97 2.5 5.36L4.8 20.5l4.2-1.86c.94.24 1.95.36 3 .36 4.97 0 9-3.47 9-7.75S16.97 3.5 12 3.5z" fill="none" stroke="#121311" stroke-width="2" stroke-linejoin="round"/></svg>Consúltanos por WhatsApp</div></div>')
     gj += [f'gtl.fromTo("#cta", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(cta_t0)});']
@@ -317,7 +336,7 @@ window.__timelines["main"] = tl;</script></body></html>'''
 # ------------------------------------------------------------------ AUDIO
 def audio(k):
     S, P, W, G = paths(k); TL, beat, t_end, DUR, VS = timeline(S)
-    sh(["python3", f"{BUILD}/rock_track.py", "--bpm", str(S["bpm"]), "--bars", str(S["bars"]), "--tail", str(S["tail"] + 0.4), "--seed", str(S["seed"]), "--style", "garage", "--out", f"{W}/musica.wav"])
+    sh(["python3", f"{BUILD}/rock_track.py", "--bpm", str(S["bpm"]), "--bars", str(S["bars"]), "--tail", str(S["tail"] + 0.4), "--seed", str(S["seed"]), "--style", S.get("style", "garage"), "--key", str(S.get("key", -5)), "--out", f"{W}/musica.wav"])
     if not os.path.exists(W + "/sfx"): sh(["cp", "-r", f"{VIGX}/trabajo/sfx", W + "/sfx"])
     slam = f"{W}/sfx/slam.wav"
     if not os.path.exists(slam): sh(["ffmpeg", "-v", "error", "-y", "-ss", f"{SLAM703 - 0.06:.2f}", "-t", "0.7", "-i", f"{TOMAS}/IMG_9703.MOV", "-vn", "-af", "highpass=f=40,afade=t=out:st=0.4:d=0.3,loudnorm=I=-18:TP=-2:LRA=7", "-ar", "48000", "-ac", "2", slam])

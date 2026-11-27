@@ -13,7 +13,7 @@
     "D Un día en IFEMA ~60 s",
     "E Cómo se pone ~30 s"
   ],
-  "estado": "A v3 en render (B y D pendientes de aplicar los mismos cambios)",
+  "estado": "A2 en render",
   "versiones_hechas": [
     "A Crónica al ritmo ~46 s (152 bpm)",
     "B Relámpago ~31 s (168 bpm)",
@@ -32,5 +32,26 @@
     "Pantalla dividida: 1 toma arriba (hebilla) + 2 abajo (piernas)",
     "Quitado el plano de 9766 en el pabellón; el cartel ORTO (9709) a cámara lenta con el texto ORTO MEDICAL CARE 2026",
     "Sin la repetición de maniquíes al final; acaba con 9767 (hacia cámara) y 9766 (de espaldas)"
-  ]
+  ],
+  "A2": {
+    "duracion": "33,3 s",
+    "musica": "rock indie 118 bpm",
+    "planos": [
+      "9755 fachada IFEMA",
+      "9701 maletero",
+      "9703 cierre",
+      "9709 cartel",
+      "9726 visitante",
+      "9738 reacción de la visitante (con pitido en la primera palabra)"
+    ],
+    "quitados": [
+      "9734 ritmo",
+      "9744 persona sana",
+      "9763 corriendo",
+      "9743 títere",
+      "maniquíes",
+      "pantalla dividida",
+      "9767/9766 final andando"
+    ]
+  }
 }
