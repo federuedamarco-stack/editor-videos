@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Bebas Neue";src:url("bebas-neue-400.woff2") format("woff2")}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#121311}
+.foto{position:absolute;inset:0;width:1080px;height:1920px;object-fit:cover}
+.t{position:absolute;left:40px;right:40px;top:320px;display:flex;flex-direction:column;align-items:center;font-family:"Bebas Neue";text-transform:uppercase;letter-spacing:.01em;
+   text-shadow:0 6px 20px rgba(18,19,17,.55),0 2px 4px rgba(18,19,17,.45)}
+.l1{color:#F6F6F1;font-size:150px;line-height:.92;white-space:nowrap}
+.l2{color:#BEBD39;font-size:380px;line-height:.86;white-space:nowrap}
+</style></head><body>
+<img class="foto" src="foto.jpg">
+<div class="t"><div class="l1">ExoMov en</div><div class="l2" id="big">IFEMA</div></div>
+<script>const b=document.getElementById('big');document.fonts.ready.then(()=>{let s=380;while(b.scrollWidth>1000&&s>100){s-=2;b.style.fontSize=s+'px'}document.body.dataset.ok=s});</script>
+</body></html>
