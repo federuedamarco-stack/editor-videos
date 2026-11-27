@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="UTF-8" /></head><body><template>
+<style>@font-face { font-family: "Bebas Neue"; src: url("assets/fonts/bebas-neue-400.woff2") format("woff2"); font-weight: 400; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-700.woff2") format("woff2"); font-weight: 700; }
+@font-face { font-family: "Figtree"; src: url("assets/fonts/figtree-800.woff2") format("woff2"); font-weight: 800; }
+#gfx-root { position: absolute; inset: 0; font-family: "Figtree", sans-serif; }
+#gfx-root .card { position: absolute; left: 80px; right: 150px; top: 300px; padding: 36px 40px; border-radius: 28px; background: rgba(18,19,17,.88); border: 2px solid #3A3B35; color: #F6F6F1; }
+#gfx-root .card.lime { background: #BEBD39; border-color: #828120; color: #121311; }
+#gfx-root .step { font-weight: 700; font-size: 28px; line-height: 1; letter-spacing: .06em; text-transform: uppercase; color: #2C2B0E; }
+#gfx-root .ctat { font-family: "Figtree", sans-serif; font-weight: 800; font-size: 76px; line-height: 1.04; text-transform: uppercase; letter-spacing: .005em; margin-top: 14px; color: #121311; }
+#gfx-root .ctas { display: flex; align-items: center; gap: 14px; margin-top: 18px; font-weight: 700; font-size: 40px; color: #121311; }
+#gfx-root .lab { position: absolute; left: 60px; right: 150px; top: 300px; display: flex; align-items: baseline; justify-content: center; gap: 28px; font-family: "Bebas Neue", sans-serif; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 6px 22px rgba(18,19,17,.7), 0 2px 4px rgba(18,19,17,.6); white-space: nowrap; }
+#gfx-root .lab .n { font-size: 260px; line-height: .8; color: #BEBD39; }
+#gfx-root .lab .wd { font-size: 170px; line-height: .9; color: #F6F6F1; }
+#hook { position: absolute; left: 40px; right: 40px; top: 290px; display: flex; flex-direction: column; align-items: center; font-family: "Bebas Neue", sans-serif; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 0 46px rgba(18,19,17,.7), 0 6px 22px rgba(18,19,17,.65), 0 2px 4px rgba(18,19,17,.55); }
+#hook-a, #hook-b { line-height: .92; white-space: nowrap; }
+#endcard { position: absolute; inset: 0; background: #121311; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; padding-bottom: 120px; }
+#end-logo { width: 640px; height: auto; }
+#end-claim { max-width: 700px; font-family: "Bebas Neue", sans-serif; font-size: 112px; line-height: .95; letter-spacing: .01em; text-transform: uppercase; color: #F6F6F1; text-align: center; }
+#end-web { font-weight: 700; font-size: 44px; color: #BEBD39; letter-spacing: .01em; }
+</style>
+<div id="gfx-root" data-composition-id="graphics" data-width="1080" data-height="1920" data-duration="31.0"><div id="hook" class="clip" data-start="0.714" data-duration="2.679" data-track-index="1"><div id="hook-a" style="color:#BEBD39;font-size:150px">EXOESQUELETOS</div><div id="hook-b" style="color:#F6F6F1;font-size:150px">EN IFEMA</div></div>
+<div id="lb3" class="lab clip" data-start="5.000" data-duration="0.700" data-track-index="1"><span class="wd">CINTURA</span></div>
+<div id="lb4" class="lab clip" data-start="5.700" data-duration="0.733" data-track-index="1"><span class="wd">MUSLO</span></div>
+<div id="lb6" class="lab clip" data-start="7.133" data-duration="0.733" data-track-index="1"><span class="wd">RODILLA</span></div>
+<div id="lb10" class="lab clip" data-start="10.000" data-duration="1.067" data-track-index="1"><span class="wd">APP</span></div>
+<div id="cta" class="card lime clip" data-start="24.443" data-duration="3.721" data-track-index="1"><div class="step">ExoMov</div><div class="ctat">Descubre<br>cómo probarlo</div><div class="ctas"><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path d="M12 3.5c-4.97 0-9 3.47-9 7.75 0 2.08.95 3.97 2.5 5.36L4.8 20.5l4.2-1.86c.94.24 1.95.36 3 .36 4.97 0 9-3.47 9-7.75S16.97 3.5 12 3.5z" fill="none" stroke="#121311" stroke-width="2" stroke-linejoin="round"/></svg>Consúltanos por WhatsApp</div></div>
+<div id="endcard" class="clip" data-start="28.164" data-duration="2.836" data-track-index="2"><img id="end-logo" src="assets/logos/exomov-logo-blanco.png" alt="ExoMov" /><div id="end-claim">Libertad de movimiento</div><div id="end-web">exomov.com</div></div></div>
+<script>const gtl = gsap.timeline({ paused: true });
+gtl.fromTo("#hook-a", { opacity: 0, y: 40, scale: .92 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }, 0.714);
+gtl.fromTo("#hook-b", { opacity: 0, y: 30, scale: .92 }, { opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }, 0.893);
+gtl.to("#hook", { opacity: 0, duration: 0.12, ease: "power2.in" }, 3.273);
+gtl.fromTo("#lb3", { opacity: 0, scale: 1.22 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 5.000);
+gtl.fromTo("#lb4", { opacity: 0, scale: 1.22 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 5.700);
+gtl.fromTo("#lb6", { opacity: 0, scale: 1.22 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 7.133);
+gtl.fromTo("#lb10", { opacity: 0, scale: 1.22 }, { opacity: 1, scale: 1, duration: 0.14, ease: "power4.out" }, 10.000);
+gtl.fromTo("#cta", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 24.443);
+gtl.fromTo("#endcard", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, 28.164);
+gtl.fromTo("#end-logo", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }, 28.214);
+gtl.fromTo("#end-claim", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 28.364);
+gtl.fromTo("#end-web", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, 28.514);
+window.__timelines["graphics"] = gtl;</script></template></body></html>
