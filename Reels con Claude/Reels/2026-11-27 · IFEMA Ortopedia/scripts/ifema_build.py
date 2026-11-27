@@ -24,8 +24,8 @@ TRI = [("9757", 0.8, 1.0, 700), ("9758", 0.3, 1.0, None), ("9759", 2.8, 1.0, Non
 QLAB = ["1 CINTURA", "2 PIERNA", "3 PIERNA"]
 
 
-def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None, bleep=None, fix=None):
-    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud, bleep=bleep, fix=fix)
+def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None, bleep=None, fix=None, cf=None):
+    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud, bleep=bleep, fix=fix, cf=cf)
 
 
 def vo(c, i, d, at, lr=None):
@@ -62,7 +62,7 @@ SPECS = {
    cuts=[cut("9755", 0.0, 4, sp=0.5), cut("9701", 0.0, 5), cut("9703", 1.35, 4, fx="T", thud=1.84),
          cut("9709", 0.0, 4, fx="W", sp=0.5, ov=dict(a=("ORTO MEDICAL CARE", PAPER, 104), b=("2026", LIME, 230))),
          cut("9726", 1.5, 4, fx="W"),
-         cut("9738", 0.0, 16, v=True, vd=8.13, lr=(0.0, 8.1), badge=True, fx="W", bleep=[(0.42, 1.16)], fix={"paseí": "*****", "un": None}),
+         cut("9738", 1.55, 16, v=True, vd=7.9, lr=(1.9, 8.0), badge=True, fx="W", cf=1.1),
          cut("9738", 14.3, 22, v=True, vd=11.18, lr=(20.0, 25.5), badge=True, fx="W")]),
  "B": dict(dir="v-B-relampago", nombre="IFEMA B · Relámpago", bpm=168, bars=20, tail=1.0, seed=23, end_b=5, boost=11,
    keys={"ifema", "equipos", "títere", "sana"},
@@ -95,7 +95,7 @@ def timeline(S):
         sf, ef = round(b * beat * F), round((b + cu["b"]) * beat * F)
         out.append(dict(cu, ts=sf / F, te=ef / F, n=ef - sf, b0=b)); b += cu["b"]
     assert b + S["end_b"] == S["bars"] * 4, (b, S["end_b"], S["bars"] * 4)
-    vs = [dict(c=cu["c"], i=cu["i"], d=cu["vd"], ts=cu["ts"], lr=cu["lr"], bleep=cu.get("bleep"), fix=cu.get("fix")) for cu in out if cu["v"]]
+    vs = [dict(c=cu["c"], i=cu["i"], d=cu["vd"], ts=cu["ts"], lr=cu["lr"], bleep=cu.get("bleep"), fix=cu.get("fix"), cf=cu.get("cf")) for cu in out if cu["v"]]
     vs += [dict(c=x["c"], i=x["i"], d=x["d"], ts=round(x["at"] * beat, 3), lr=x["lr"]) for x in S.get("vo", [])]
     vs.sort(key=lambda v: v["ts"])
     return out, beat, b * beat, round((S["bars"] * 4 * beat + S["tail"]) * F) / F, vs
@@ -120,7 +120,7 @@ def captions_for(S, VS):
     for vc in VS:
         A = json.load(open(f"{TOMAS}/_analisis/{os.path.splitext(CLIPS[vc['c']])[0]}.json"))["words"]
         FX = vc.get("fix") or {}
-        ws = [(clean_word(w["w"]), vc["ts"] + (w["s"] - vc["i"]), vc["ts"] + (min(w["e"], w["s"] + 0.7) - vc["i"]), w["w"]) for w in A if vc["i"] - 0.02 <= w["s"] < vc["i"] + vc["d"] - 0.05]
+        ws = [(clean_word(w["w"]), vc["ts"] + max(0.0, w["s"] - vc["i"]), vc["ts"] + max(0.45, min(w["e"], w["s"] + 0.7) - vc["i"]), w["w"]) for w in A if (vc.get("cf") or vc["i"]) - 0.02 <= w["s"] < vc["i"] + vc["d"] - 0.05]
         chunk = []
         def flush():
             nonlocal chunk
