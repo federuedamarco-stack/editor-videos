@@ -18,18 +18,18 @@ TH = {
  "sen1": thumb("sen1", D, "IMG_9738_comprimido.mp4", 4.5), "sen2": thumb("sen2", D, "IMG_9738_comprimido.mp4", 22.0),
  "b1": thumb("b1", D, "IMG_9755.mov", 0.5), "b2": thumb("b2", D, "IMG_9726.MOV", 3.0),
  "tit": thumb("tit", D, "IMG_9743.mov", 2.0), "t34": thumb("t34", D, "IMG_9734.MOV", 7.0),
- "talk": thumb("talk", V1, "Untitled.mov", 5.2), "end": thumb("end", V1, "IMG_9646.MOV", 9.6),
+ "walk": thumb("walk", D, "IMG_9767.MOV", 5.8), "back": thumb("back", D, "IMG_9766.MOV", 1.5),
 }
 ROLE = {"hook": "HOOK", "ctx": "CONTEXTO", "ret": "RETENCIÓN", "body": "CUERPO", "cta": "CTA"}
 # (inicio, fin, rol, nombre, clip, miniaturas, qué se ve, texto en pantalla, sonido)
 S = [
  (0.0, 3.0, "hook", "Hook · la pregunta y la primera palabra", "IMG_9738 · 9743 · 9763", ["run", "sen1", "tit"],
   "Tres destellos de 0,4 s con gente caminando con el exoesqueleto (el corredor, la visitante, la otra visitante) y aterrizamos en la visitante, ya en movimiento desde el primer fotograma.",
-  "«¿QUÉ SE SIENTE AL LLEVAR UN EXOESQUELETO?» en dos líneas, grande, en el primer fotograma. Aparece la primera palabra: «RARA».",
+  "«¿QUÉ SIENTE UN PROFESIONAL AL PROBAR UN EXOESQUELETO?» en tres líneas, grande, en el primer fotograma. Aparece la primera palabra: «RARA».",
   "Su voz desde el segundo 1: «…una sensación muy RARA». Golpe en el primer fotograma y entra la música."),
  (3.0, 7.0, "ctx", "Dónde estamos", "IMG_9755 · 9726", ["b1", "b2"],
   "La fachada de IFEMA Madrid, a cámara lenta (2 s), y un visitante con el exoesqueleto puesto (2 s).",
-  "«IFEMA · ORTO MEDICAL CARE 2026». Barra de progreso fina arriba que se va llenando hasta el final.",
+  "«IFEMA · ORTO MEDICAL CARE 2026 · LA FERIA PROFESIONAL DE LA ORTOPEDIA». Barra de progreso fina arriba que se va llenando hasta el final.",
   "Música sola. Whoosh en el corte."),
  (7.0, 14.0, "body", "Palabra 1 · RARA", "IMG_9738 · 0:02 – 0:08", ["sen1"],
   "Un solo plano de 7 s: la visitante camina y lo cuenta. Sin cortes para que se note que es real.",
@@ -51,13 +51,13 @@ S = [
   "Tres planos de 1,3 s con el exoesqueleto en movimiento: la persona corriendo, subir escaleras acompañado y los primeros pasos en la clínica. Es lo más visual del material y sube la energía justo antes del CTA.",
   "Sin texto, o solo «RARA · TÍTERE · REPOTENCIADO» apareciendo palabra a palabra.",
   "Música a tope. Whoosh en cada corte."),
- (35.0, 38.5, "cta", "CTA · la invitación", "Untitled · IMG_9646", ["talk", "end"],
-  "El hombre de ExoMov mirando a cámara: «Ahora puedes hacerlo con nosotros» y, cortando a la clínica, sentado en el banco: «Escríbenos y te contamos».",
-  "Tarjeta lima «¿QUIERES PROBARLO? · Consúltanos por WhatsApp», encima, durante los 3,5 s. Subtítulos de lo que dice.",
-  "Su voz y la música baja. Es el único momento del vídeo con una cara hablando a cámara, para que el CTA suene a persona."),
+ (35.0, 38.5, "cta", "CTA · colabora con nosotros", "IMG_9767 · 9766 · voz de 9646", ["walk", "back"],
+  "Sin la imagen del banco. Encima de su voz ponemos a las dos personas de ExoMov con la camiseta andando hacia la cámara (2 s) y de espaldas (1,5 s), para que parezca la misma historia.",
+  "Tarjeta lima: «¿ERES PROFESIONAL DE LA ORTOPEDIA? · COLABORA CON EXOMOV · Escríbenos». Entra en el segundo 0,3, con el primer gesto de voz.",
+  "Su voz sola, sin cara: «Escríbenos y te contamos». La música baja un momento y vuelve. El ambiente del banco queda tapado por la música."),
  (38.5, 41.0, "cta", "Cierre y bucle", "Gráfico", [],
   "Logo, «Libertad de movimiento» y exomov.com. Termina en un corte limpio para que al reiniciarse enlace con la pregunta del principio.",
-  "«¿QUÉ SE SIENTE? Pruébalo» encima del logo. Se repite la pregunta del hook.",
+  "«¿QUÉ SIENTE UN PROFESIONAL? Colabora con ExoMov» encima del logo.",
   "Golpe final y la música se corta en seco, sin fundido, para que el bucle no suene a final."),
 ]
 dur = S[-1][1]
@@ -82,8 +82,8 @@ page = f'''<title>Storyboard Tres palabras</title>
  <header>
   <div class="label">ExoMov · Vídeo nuevo para Instagram · Storyboard para aprobar</div>
   <h1>Tres palabras<br>para un exoesqueleto</h1>
-  <p class="lede">Un reel de reacciones pensado para retener: una pregunta y la primera palabra en los 3 primeros segundos, tres palabras que forman una pequeña historia (RARA, TÍTERE, REPOTENCIADO), un giro a mitad que corta la monotonía y una invitación final con cara y voz. Mezcla el material de IFEMA con el del primer vídeo.</p>
-  <div class="facts"><span class="tag accent">≈ {dur:.0f} s</span><span class="tag">Rock indie · 118 bpm</span><span class="tag">Hook: ¿QUÉ SE SIENTE AL LLEVAR UN EXOESQUELETO?</span><span class="tag">CTA: ¿QUIERES PROBARLO?</span><span class="tag">1080×1920 · 30 fps</span></div>
+  <p class="lede">Un reel de reacciones pensado para retener y dirigido a profesionales de la ortopedia: una pregunta y la primera palabra en los 3 primeros segundos, tres palabras que forman una pequeña historia (RARA, TÍTERE, REPOTENCIADO), un giro a mitad que corta la monotonía y una invitación final a colaborar con ExoMov. Mezcla el material de IFEMA con el del primer vídeo.</p>
+  <div class="facts"><span class="tag accent">≈ {dur:.0f} s</span><span class="tag">Rock indie · 118 bpm</span><span class="tag">Hook: ¿QUÉ SIENTE UN PROFESIONAL AL PROBAR UN EXOESQUELETO?</span><span class="tag">CTA: COLABORA CON EXOMOV</span><span class="tag">1080×1920 · 30 fps</span></div>
  </header>
  <section class="timeline" aria-label="Línea de tiempo"><div class="label">Línea de tiempo · hook, cuerpo, retención y CTA</div>
   <div class="track">{track}</div><div class="ticks mono"><span>0:00</span><span>0:20</span><span>0:{int(dur)}</span></div>
@@ -94,20 +94,22 @@ page = f'''<title>Storyboard Tres palabras</title>
    <li><b>Una historia en tres palabras.</b> Cada palabra aparece en lima y enorme. RARA y TÍTERE abren una duda («¿en qué acaba?») y REPOTENCIADO la cierra.</li>
    <li><b>Aviso de que llega algo:</b> a mitad, un texto pequeño promete la tercera palabra. Es el motivo para no irse.</li>
    <li><b>Un cambio de ritmo cada 5-7 s:</b> reacción, reacción, explicación, reacción, montaje de movimiento.</li>
-   <li><b>CTA doble:</b> en texto (tarjeta lima) y dicho por una persona («escríbenos y te contamos»).</li>
+   <li><b>CTA doble:</b> en texto (tarjeta lima, dirigida a profesionales) y dicho por una persona («escríbenos y te contamos»).</li>
    <li><b>Bucle:</b> el final repite la pregunta del principio y la música se corta en seco, para que se vea otra vez.</li></ul></div>
   <div class="box"><h3 class="label">Qué reutiliza y qué cambia</h3><ul>
    <li><b>Del vídeo de IFEMA (A2):</b> la visitante (9738), la otra visitante (9743), el asistente (9734), el corredor (9763), la fachada (9755) y el visitante (9726).</li>
-   <li><b>Del primer vídeo:</b> el hombre de ExoMov del CTA (Untitled y 9646), y los planos de la clínica (9632 y 9629).</li>
-   <li><b>Diferente de los demás:</b> empieza por la pregunta en vez de por IFEMA, estructura el vídeo en capítulos y cierra con una persona hablando a cámara en vez de con una escena.</li>
+   <li><b>Del primer vídeo:</b> solo la <b>voz</b> del hombre de ExoMov («escríbenos y te contamos»), sin su imagen del banco, y los planos de la clínica (9632 y 9629).</li>
+   <li><b>Diferente de los demás:</b> empieza por la pregunta en vez de por IFEMA, estructura el vídeo en capítulos y cierra con una invitación a colaborar, no a probar.</li>
    <li><b>Sin la palabrota.</b> El inicio del 9738 se corta igual que en el A2.</li></ul></div>
  </section>
  {rows}
  <section class="box"><h2>Antes de montar</h2><ul>
-  <li><b>La pregunta del hook.</b> «¿Qué se siente al llevar un exoesqueleto?» es lo que mejor encaja con las tres reacciones. Si prefieres otra, la cambio.</li>
-  <li><b>No sé si las visitantes del 9738 y del 9743 son la misma persona.</b> Por eso no pongo «tres personas»: solo «tres palabras». Si lo son, puedo decirlo; si no, también.</li>
-  <li><b>El CTA.</b> «Consúltanos por WhatsApp» es el mismo de los otros vídeos. Si tienes un número o un enlace, lo pongo.</li>
-  <li><b>La duración,</b> unos {dur:.0f} s. Si prefieres un vídeo más corto, quito el giro del asistente y el montaje, y baja a unos 30 s.</li>
+  <li><b>¿Las visitantes son profesionales?</b> He supuesto que sí, porque es una feria profesional de ortopedia y llevan acreditación. Si alguna no lo es, cambio la pregunta del hook a «¿qué se siente al llevar un exoesqueleto?».</li>
+  <li><b>¿Cómo quieres que te contacten los profesionales?</b> WhatsApp, un correo, la web o un formulario. Ahora la tarjeta dice solo «Escríbenos»; con tu dato la dejo cerrada.</li>
+  <li><b>¿Qué tipo de colaboradores buscas?</b> Ortopedias, clínicas, distribuidores… Si me lo dices, lo pongo en la tarjeta.</li>
+  <li><b>La voz del banco sola.</b> Solo uso «escríbenos y te contamos» (1,4 s). Es muy corta, así que la tarjeta se queda en pantalla 3,5 s para que dé tiempo a leerla. Si quieres más, grabas una frase nueva dirigida a profesionales y la sustituyo.</li>
+  <li><b>No sé si las visitantes del 9738 y del 9743 son la misma persona.</b> Por eso hablo de «tres palabras» y no de «tres personas».</li>
+  <li><b>La duración,</b> unos 41 s. Si prefieres un vídeo más corto, quito el giro del asistente y el montaje, y baja a unos 30 s.</li>
   <li><b>Permisos.</b> Las dos visitantes salen con la cara visible y se las oye.</li></ul></section>
  <footer>Tiempos aproximados: se ajustan al compás de la música al montar. Cada texto grande entra a golpe, no con fundido.</footer>
 </div>
