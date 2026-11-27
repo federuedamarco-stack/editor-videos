@@ -15,7 +15,7 @@ F = 30
 CLIPS = {"9703": "IMG_9703.MOV", "9709": "IMG_9709.mov", "9713": "IMG_9713.MOV", "9714": "IMG_9714.MOV", "9715": "IMG_9715.mov",
          "9716": "IMG_9716.mov", "9719": "IMG_9719.mov", "9734": "IMG_9734.MOV", "9735": "IMG_9735.MOV", "9737": "IMG_9737.MOV",
          "9743": "IMG_9743.mov", "9744": "IMG_9744.MOV", "9757": "IMG_9757.MOV", "9758": "IMG_9758.MOV", "9759": "IMG_9759.MOV",
-         "9762": "IMG_9762.MOV", "9766": "IMG_9766.MOV", "9767": "IMG_9767.MOV", "9738": "IMG_9738_comprimido.mp4", "9755": "IMG_9755.mov", "9701": "IMG_9701.mov", "9726": "IMG_9726.MOV"}
+         "9762": "IMG_9762.MOV", "9766": "IMG_9766.MOV", "9767": "IMG_9767.MOV", "9738": "IMG_9738_comprimido.mp4", "9755": "IMG_9755.mov", "9701": "IMG_9701.mov", "9726": "IMG_9726.MOV", "9763": "IMG_9763.MOV", "9632": "../IMG_9632.MOV", "9629": "../IMG_9629.MOV", "9646": "../IMG_9646.MOV"}
 INK, LIME, PAPER, BORDER, S2 = "#121311", "#BEBD39", "#F6F6F1", "#3A3B35", "#262723"
 CUT = 7.5            # segundo de 9762 en que se corta, con la tapa del maletero a mitad de caída
 IN703 = 1.35         # segundo de 9703 en que entra la tapa (continúa el movimiento)
@@ -24,12 +24,12 @@ TRI = [("9757", 0.8, 1.0, 700), ("9758", 0.3, 1.0, None), ("9759", 2.8, 1.0, Non
 QLAB = ["1 CINTURA", "2 PIERNA", "3 PIERNA"]
 
 
-def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None, bleep=None, fix=None, cf=None):
-    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud, bleep=bleep, fix=fix, cf=cf)
+def cut(c, i, b, v=False, vd=None, fx="", lr=None, q=None, badge=False, sp=1.0, ov=None, thud=None, bleep=None, fix=None, cf=None, chip=None, note=None, cta=False, chip_x=0):
+    return dict(c=c, i=i, b=b, v=v, vd=vd, fx=fx, lr=lr, q=q, badge=badge, sp=sp, ov=ov, thud=thud, bleep=bleep, fix=fix, cf=cf, chip=chip, note=note, cta=cta, chip_x=chip_x)
 
 
-def vo(c, i, d, at, lr=None):
-    return dict(c=c, i=i, d=d, at=at, lr=lr)
+def vo(c, i, d, at, lr=None, wo=None):
+    return dict(c=c, i=i, d=d, at=at, lr=lr, wo=wo)
 
 
 def opening(beat, beats_actor, extra_closed):
@@ -64,6 +64,22 @@ SPECS = {
          cut("9726", 1.5, 4, fx="W"),
          cut("9738", 1.55, 16, v=True, vd=7.9, lr=(1.9, 8.0), badge=True, fx="W", cf=1.1),
          cut("9738", 14.3, 22, v=True, vd=11.18, lr=(20.0, 25.5), badge=True, fx="W")]),
+ "G": dict(dir="v-G-tres-palabras", nombre="Tres palabras para un exoesqueleto", bpm=118, bars=19, tail=0.8, seed=5, end_b=6, boost=11, style="indie", key=-2,
+   keys={"rara", "curiosa", "títere", "ritmo", "repotenciado"}, progress=3.05,
+   title=dict(a=("¿QUÉ SIENTE UN PROFESIONAL", PAPER, 88), b=("AL PROBAR UN EXOESQUELETO?", LIME, 88), beats=(0.0, 6)),
+   vo=[vo("9738", 2.65, 2.95, 0.0, lr=(1.9, 8.0)),
+       vo("9646", 8.95, 1.5, 63.4, lr=(9.0, 10.45), wo=[dict(w="Escríbenos", s=9.02, e=9.5), dict(w="y", s=9.5, e=9.7), dict(w="te", s=9.7, e=9.82), dict(w="contamos", s=9.82, e=10.3)])],
+   dip=dict(clip="9738", i=20.0, src_t=24.28, len=0.95),
+   cta_card='<div class="step">¿Eres profesional de la ortopedia?</div><div class="ctat">Ortopedias<br>y clínicas</div><div class="ctas2">Comenta <b>COLABORADORES</b> y te enviamos el enlace al WhatsApp</div>',
+   end_txt="Ortopedias y clínicas · comenta COLABORADORES",
+   cuts=[cut("9763", 2.4, 1, fx="P"), cut("9743", 1.2, 1, fx="W"), cut("9738", 3.4, 4, fx="W"),
+         cut("9755", 0.0, 4, sp=0.5, fx="W", ov=dict(a=("IFEMA · ORTO MEDICAL CARE 2026", PAPER, 62), b=("FERIA PROFESIONAL DE LA ORTOPEDIA", LIME, 50))), cut("9726", 1.5, 4, fx="W"),
+         cut("9738", 1.55, 14, v=True, vd=7.0, lr=(1.9, 8.0), fx="W", chip="1/3 · RARA", cf=1.1),
+         cut("9743", 0.0, 8, v=True, vd=3.85, fx="W", chip="2/3 · TÍTERE", note=(1.6, 2.4, "La tercera palabra lo resume")),
+         cut("9734", 5.52, 10, v=True, vd=3.5, fx="W"),
+         cut("9738", 20.0, 4, v=True, vd=5.6, lr=(20.0, 25.5), fx="WR", chip="3/3 · REPOTENCIADO", chip_x=1), cut("9738", 11.4, 7),
+         cut("9763", 2.0, 2, fx="W"), cut("9632", 5.0, 2, fx="W"), cut("9629", 2.5, 2, fx="W"),
+         cut("9767", 4.5, 4, fx="W", cta=True), cut("9766", 0.5, 3, fx="P")]),
  "B": dict(dir="v-B-relampago", nombre="IFEMA B · Relámpago", bpm=168, bars=20, tail=1.0, seed=23, end_b=5, boost=11,
    keys={"ifema", "equipos", "títere", "sana"},
    title=dict(a=("EXOESQUELETOS", LIME, 150), b=("EN IFEMA", PAPER, 150), beats=(0.5, 8.5)),
@@ -95,8 +111,8 @@ def timeline(S):
         sf, ef = round(b * beat * F), round((b + cu["b"]) * beat * F)
         out.append(dict(cu, ts=sf / F, te=ef / F, n=ef - sf, b0=b)); b += cu["b"]
     assert b + S["end_b"] == S["bars"] * 4, (b, S["end_b"], S["bars"] * 4)
-    vs = [dict(c=cu["c"], i=cu["i"], d=cu["vd"], ts=cu["ts"], lr=cu["lr"], bleep=cu.get("bleep"), fix=cu.get("fix"), cf=cu.get("cf")) for cu in out if cu["v"]]
-    vs += [dict(c=x["c"], i=x["i"], d=x["d"], ts=round(x["at"] * beat, 3), lr=x["lr"]) for x in S.get("vo", [])]
+    vs = [dict(c=cu["c"], i=cu["i"], d=cu["vd"], ts=cu["ts"], lr=cu["lr"], bleep=cu.get("bleep"), fix=cu.get("fix"), cf=cu.get("cf"), wo=cu.get("wo")) for cu in out if cu["v"]]
+    vs += [dict(c=x["c"], i=x["i"], d=x["d"], ts=round(x["at"] * beat, 3), lr=x["lr"], wo=x.get("wo")) for x in S.get("vo", [])]
     vs.sort(key=lambda v: v["ts"])
     return out, beat, b * beat, round((S["bars"] * 4 * beat + S["tail"]) * F) / F, vs
 
@@ -118,7 +134,7 @@ def clean_word(w): return re.sub(r"[¿?¡!,.;:]", "", w).strip()
 def captions_for(S, VS):
     caps = []
     for vc in VS:
-        A = json.load(open(f"{TOMAS}/_analisis/{os.path.splitext(CLIPS[vc['c']])[0]}.json"))["words"]
+        A = vc["wo"] if vc.get("wo") else json.load(open(f"{TOMAS}/_analisis/{os.path.splitext(CLIPS[vc['c']])[0]}.json"))["words"]
         FX = vc.get("fix") or {}
         ws = [(clean_word(w["w"]), vc["ts"] + max(0.0, w["s"] - vc["i"]), vc["ts"] + max(0.45, min(w["e"], w["s"] + 0.7) - vc["i"]), w["w"]) for w in A if (vc.get("cf") or vc["i"]) - 0.02 <= w["s"] < vc["i"] + vc["d"] - 0.05]
         chunk = []
@@ -256,6 +272,20 @@ window.__timelines["captions"] = ctl;</script></template></body></html>'''
         gj += [f'gtl.fromTo("#ov{oi}a", {{ opacity: 0, y: 30, scale: .94 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }}, {f3(a)});',
                f'gtl.fromTo("#ov{oi}b", {{ opacity: 0, y: 30, scale: .94 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.2, ease: "power4.out" }}, {f3(a + 0.15)});',
                f'gtl.to("#ov{oi}", {{ opacity: 0, duration: 0.12, ease: "power2.in" }}, {f3(b - 0.12)});']
+    for ci, cu in enumerate(TL):                      # etiquetas de capítulo y avisos
+        if cu.get("chip"):
+            a, b = cu["ts"] + 0.12, TL[min(len(TL) - 1, ci + cu.get("chip_x", 0))]["te"]
+            gh.append(f'<div id="chip{ci}" class="chip clip" data-start="{f3(a)}" data-duration="{f3(b - a)}" data-track-index="1" style="top:250px"><i></i>{cu["chip"]}</div>')
+            gj += [f'gtl.fromTo("#chip{ci}", {{ opacity: 0, y: -20 }}, {{ opacity: 1, y: 0, duration: 0.25, ease: "power3.out" }}, {f3(a)});']
+        if cu.get("note"):
+            off, dd, txt = cu["note"]; a = cu["ts"] + off
+            gh.append(f'<div id="note{ci}" class="chip big clip" data-start="{f3(a)}" data-duration="{f3(dd)}" data-track-index="1" style="top:340px"><i></i>{txt}</div>')
+            gj += [f'gtl.fromTo("#note{ci}", {{ opacity: 0, scale: .9 }}, {{ opacity: 1, scale: 1, duration: 0.22, ease: "power3.out" }}, {f3(a)});',
+                   f'gtl.to("#note{ci}", {{ opacity: 0, duration: 0.15, ease: "power2.in" }}, {f3(a + dd - 0.15)});']
+    if S.get("progress"):
+        p0 = S["progress"]
+        gh.append(f'<div id="prog" class="prog clip" data-start="{f3(p0)}" data-duration="{f3(END - p0)}" data-track-index="1"><i id="progf"></i></div>')
+        gj.append(f'gtl.fromTo("#progf", {{ scaleX: 0 }}, {{ scaleX: 1, duration: {f3(END - p0)}, ease: "none" }}, {f3(p0)});')
     bi = [i for i, c in enumerate(TL) if c["badge"]]
     if bi:
         a, b = TL[bi[0]]["ts"] + 0.1, TL[bi[-1]]["te"]
@@ -265,14 +295,18 @@ window.__timelines["captions"] = ctl;</script></template></body></html>'''
         gj.append(f'gtl.to("#badge", {{ opacity: 0, y: -24, duration: 0.2, ease: "power2.in" }}, {f3(b - 0.2)});')
     cta_t0 = TL[-1]["ts"] + 0.3 * beat
     if S.get("cta_back"): cta_t0 = END - S["cta_back"]
+    if S.get("cta_card"): cta_t0 = [c for c in TL if c.get("cta")][0]["ts"] + 0.2
     gh.append(f'<div id="cta" class="card lime clip" data-start="{f3(cta_t0)}" data-duration="{f3(END - cta_t0 - 0.05)}" data-track-index="1" style="top:300px"><div class="step">ExoMov</div><div class="ctat">Descubre<br>cómo probarlo</div>'
               '<div class="ctas"><svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true"><path d="M12 3.5c-4.97 0-9 3.47-9 7.75 0 2.08.95 3.97 2.5 5.36L4.8 20.5l4.2-1.86c.94.24 1.95.36 3 .36 4.97 0 9-3.47 9-7.75S16.97 3.5 12 3.5z" fill="none" stroke="#121311" stroke-width="2" stroke-linejoin="round"/></svg>Consúltanos por WhatsApp</div></div>')
+    if S.get("cta_card"): gh[-1] = f'<div id="cta" class="card lime clip" data-start="{f3(cta_t0)}" data-duration="{f3(END - cta_t0 - 0.05)}" data-track-index="1" style="top:300px">{S["cta_card"]}</div>'
     gj += [f'gtl.fromTo("#cta", {{ opacity: 0, y: 40 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(cta_t0)});']
-    gh.append(f'<div id="endcard" class="clip" data-start="{f3(END - 0.05)}" data-duration="{f3(DUR - END + 0.05)}" data-track-index="2"><img id="end-logo" src="assets/logos/exomov-logo-blanco.png" alt="ExoMov" /><div id="end-claim">Libertad de movimiento</div><div id="end-web">exomov.com</div></div>')
+    EXTRA = ('<div id="end-extra">' + S['end_txt'] + '</div>') if S.get('end_txt') else ''
+    gh.append(f'<div id="endcard" class="clip" data-start="{f3(END - 0.05)}" data-duration="{f3(DUR - END + 0.05)}" data-track-index="2"><img id="end-logo" src="assets/logos/exomov-logo-blanco.png" alt="ExoMov" /><div id="end-claim">Libertad de movimiento</div><div id="end-web">exomov.com</div>{EXTRA}</div>')
     gj += [f'gtl.fromTo("#endcard", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.12, ease: "power2.out" }}, {f3(END - 0.05)});',
            f'gtl.fromTo("#end-logo", {{ opacity: 0, y: 30 }}, {{ opacity: 1, y: 0, duration: 0.34, ease: "power3.out" }}, {f3(END)});',
            f'gtl.fromTo("#end-claim", {{ opacity: 0, y: 24 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(END + 0.15)});',
            f'gtl.fromTo("#end-web", {{ opacity: 0, y: 16 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(END + 0.3)});']
+    if S.get('end_txt'): gj.append(f'gtl.fromTo("#end-extra", {{ opacity: 0, y: 14 }}, {{ opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }}, {f3(END + 0.5)});')
     gfx_html = f'''<!doctype html>
 <html lang="es"><head><meta charset="UTF-8" /></head><body><template>
 <style>{FONTS}
@@ -284,6 +318,15 @@ window.__timelines["captions"] = ctl;</script></template></body></html>'''
 #gfx-root .ctat {{ font-family: "Figtree", sans-serif; font-weight: 800; font-size: 76px; line-height: 1.04; text-transform: uppercase; letter-spacing: .005em; margin-top: 14px; color: {INK}; }}
 #gfx-root .ctas {{ display: flex; align-items: center; gap: 14px; margin-top: 18px; font-weight: 700; font-size: 40px; color: {INK}; }}
 #gfx-root .qline {{ position: absolute; background: {INK}; }}
+#gfx-root .chip {{ position: absolute; left: 80px; display: inline-flex; align-items: center; gap: 14px; height: 64px; padding: 0 30px; border-radius: 999px; background: rgba(18,19,17,.9); border: 2px solid {BORDER}; color: {PAPER}; font-weight: 800; font-size: 36px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }}
+#gfx-root .chip i {{ width: 16px; height: 16px; border-radius: 999px; background: {LIME}; }}
+#gfx-root .chip.big {{ font-size: 34px; background: {LIME}; color: {INK}; border-color: #828120; }}
+#gfx-root .chip.big i {{ background: {INK}; }}
+#gfx-root .prog {{ position: absolute; left: 40px; top: 212px; width: 1000px; height: 8px; border-radius: 999px; background: rgba(246,246,241,.28); overflow: hidden; }}
+#gfx-root .prog i {{ display: block; width: 100%; height: 100%; background: {LIME}; transform-origin: 0 50%; transform: scaleX(0); }}
+#gfx-root .ctas2 {{ font-weight: 700; font-size: 38px; line-height: 1.2; margin-top: 18px; color: {INK}; }}
+#gfx-root .ctas2 b {{ font-weight: 800; }}
+#end-extra {{ max-width: 860px; font-weight: 700; font-size: 38px; line-height: 1.25; color: {PAPER}; text-align: center; }}
 #gfx-root .plab {{ position: absolute; display: flex; align-items: baseline; gap: 14px; font-family: "Bebas Neue", sans-serif; text-transform: uppercase; letter-spacing: .01em; text-shadow: 0 4px 16px rgba(18,19,17,.85), 0 1px 3px rgba(18,19,17,.8); white-space: nowrap; }}
 #gfx-root .plab .n {{ font-size: 96px; line-height: .8; color: {LIME}; }}
 #gfx-root .plab .wd {{ font-size: 70px; line-height: .9; color: {PAPER}; }}
@@ -349,6 +392,10 @@ def audio(k):
     edges.append((prev, DUR + 1))
     for a, b in edges:
         E += (f"+{f:.3f}*max(0,min(1,min((t-{a:.3f})/{R},({b:.3f}-t)/{R})))" if a > 0 else f"+{f:.3f}*max(0,min(1,({b:.3f}-t)/{R}))")
+    wt = None
+    if S.get("dip"):
+        d = S["dip"]; cu0 = [c for c in TL if c["c"] == d["clip"] and c["i"] == d["i"]][0]; wt = cu0["ts"] + d["src_t"] - cu0["i"]
+        E = f"({E})*(1-clip((t-{wt - d['len']:.3f})/0.08,0,1)*(1-clip((t-{wt - 0.02:.3f})/0.04,0,1)))"
     sh(["ffmpeg", "-v", "error", "-y", "-i", f"{W}/musica.wav", "-af", f"volume='{E}':eval=frame", "-c:a", "pcm_s24le", f"{W}/musica_env.wav"])
     ev = []
     def add(name, t, db, mx=None):
@@ -358,7 +405,9 @@ def audio(k):
         if cu["c"] == "TRI":
             add("whoosh", cu["ts"] - 0.05, -21)
             for p in range(3): add("uiclick", cu["ts"] + 0.12 * (p + 1), -23, 0.3)
+        if "R" in cu["fx"]: add("riser", cu["ts"] - 2.3, -27)
         if "T" in cu["fx"]: add("slam", cu["ts"] + cu["thud"] - cu["i"] - 0.06, -9)     # golpe real de la tapa (audio de 9703)
+    if wt is not None: add("impact", wt - 0.03, -14)
     add("riser", t_end - 2.6, -27); add("uiclick", t_end, -23, 0.3); add("impact", S["bars"] * 4 * beat, -18)
     json.dump(sorted(ev, key=lambda e: e["t"]), open(f"{W}/sfx.json", "w"), indent=1)
     r = subprocess.run(["python3", f"{SKILL}/mix.py", "--work", W, "--sfx", f"{W}/sfx.json", "--music", f"{W}/musica_env.wav", "--music-under", "-1", "--duck", "9", "--tp", "-5"], capture_output=True, text=True)

@@ -44,7 +44,7 @@ S = [
   "«ANDAS… Y ÉL TE COPIA». RITMO en lima: «te va a copiar al RITMO al que andas».",
   "Su voz. Un riser que sube durante los últimos 2 s y se corta justo antes de la palabra 3."),
  (24.0, 31.0, "body", "Palabra 3 · REPOTENCIADO (el pago del hook)", "IMG_9738 · 0:20 – 0:25", ["sen2"],
-  "La visitante vuelve: «te sientes ridículo andando porque te sientes raro, te sientes como repotenciado, ¿verdad?». Silencio de música un segundo antes de la palabra, y vuelve a golpe.",
+  "La visitante vuelve: «te sientes ridículo andando porque te sientes raro, te sientes como repotenciado, ¿verdad?». En el vídeo original, justo en esa frase, la cámara enfoca un brazo; por eso pasa a un plano de ella caminando de espaldas mientras sigue su voz. Silencio de música un segundo antes de la palabra, y vuelve a golpe.",
   "Etiqueta «3/3 · REPOTENCIADO». REPOTENCIADO enorme, en lima, ocupa casi todo el ancho.",
   "Su voz. Corte de música y golpe justo en «repotenciado»."),
  (31.0, 35.0, "ret", "Energía · lo que se ve", "IMG_9763 · 9632 · 9629", ["run", "stairs2", "steps"],
@@ -53,11 +53,11 @@ S = [
   "Música a tope. Whoosh en cada corte."),
  (35.0, 38.5, "cta", "CTA · colabora con nosotros", "IMG_9767 · 9766 · voz de 9646", ["walk", "back"],
   "Sin la imagen del banco. Encima de su voz ponemos a las dos personas de ExoMov con la camiseta andando hacia la cámara (2 s) y de espaldas (1,5 s), para que parezca la misma historia.",
-  "Tarjeta lima: «¿ERES PROFESIONAL DE LA ORTOPEDIA? · COLABORA CON EXOMOV · Escríbenos». Entra en el segundo 0,3, con el primer gesto de voz.",
+  "Tarjeta lima: «¿ERES PROFESIONAL DE LA ORTOPEDIA? · ORTOPEDIAS Y CLÍNICAS · Comenta COLABORADORES y te enviamos el enlace al WhatsApp». Entra en el segundo 0,2, con la voz.",
   "Su voz sola, sin cara: «Escríbenos y te contamos». La música baja un momento y vuelve. El ambiente del banco queda tapado por la música."),
  (38.5, 41.0, "cta", "Cierre y bucle", "Gráfico", [],
   "Logo, «Libertad de movimiento» y exomov.com. Termina en un corte limpio para que al reiniciarse enlace con la pregunta del principio.",
-  "«¿QUÉ SIENTE UN PROFESIONAL? Colabora con ExoMov» encima del logo.",
+  "Debajo de la web: «Ortopedias y clínicas · comenta COLABORADORES».",
   "Golpe final y la música se corta en seco, sin fundido, para que el bucle no suene a final."),
 ]
 dur = S[-1][1]
@@ -103,14 +103,12 @@ page = f'''<title>Storyboard Tres palabras</title>
    <li><b>Sin la palabrota.</b> El inicio del 9738 se corta igual que en el A2.</li></ul></div>
  </section>
  {rows}
- <section class="box"><h2>Antes de montar</h2><ul>
-  <li><b>¿Las visitantes son profesionales?</b> He supuesto que sí, porque es una feria profesional de ortopedia y llevan acreditación. Si alguna no lo es, cambio la pregunta del hook a «¿qué se siente al llevar un exoesqueleto?».</li>
-  <li><b>¿Cómo quieres que te contacten los profesionales?</b> WhatsApp, un correo, la web o un formulario. Ahora la tarjeta dice solo «Escríbenos»; con tu dato la dejo cerrada.</li>
-  <li><b>¿Qué tipo de colaboradores buscas?</b> Ortopedias, clínicas, distribuidores… Si me lo dices, lo pongo en la tarjeta.</li>
-  <li><b>La voz del banco sola.</b> Solo uso «escríbenos y te contamos» (1,4 s). Es muy corta, así que la tarjeta se queda en pantalla 3,5 s para que dé tiempo a leerla. Si quieres más, grabas una frase nueva dirigida a profesionales y la sustituyo.</li>
-  <li><b>No sé si las visitantes del 9738 y del 9743 son la misma persona.</b> Por eso hablo de «tres palabras» y no de «tres personas».</li>
-  <li><b>La duración,</b> unos 41 s. Si prefieres un vídeo más corto, quito el giro del asistente y el montaje, y baja a unos 30 s.</li>
-  <li><b>Permisos.</b> Las dos visitantes salen con la cara visible y se las oye.</li></ul></section>
+ <section class="box"><h2>Decisiones ya tomadas</h2><ul>
+  <li><b>Público:</b> profesionales de la ortopedia. Las visitantes lo son, así que el hook habla de «un profesional».</li>
+  <li><b>Colaboradores:</b> ortopedias y clínicas.</li>
+  <li><b>CTA:</b> «Comenta COLABORADORES y te enviamos el enlace al WhatsApp», en la tarjeta y en el cierre. Sin número ni enlace en el vídeo.</li>
+  <li><b>La voz del banco:</b> solo «escríbenos y te contamos», sin su imagen, sobre las dos personas de ExoMov.</li>
+  <li><b>Pendiente de ti:</b> los permisos de las visitantes, que salen con la cara visible y se las oye.</li></ul></section>
  <footer>Tiempos aproximados: se ajustan al compás de la música al montar. Cada texto grande entra a golpe, no con fundido.</footer>
 </div>
 '''
