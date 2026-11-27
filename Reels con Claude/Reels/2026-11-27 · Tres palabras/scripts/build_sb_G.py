@@ -25,36 +25,32 @@ ROLE = {"hook": "HOOK", "ctx": "CONTEXTO", "ret": "RETENCIÓN", "body": "CUERPO"
 S = [
  (0.0, 3.0, "hook", "Hook · la pregunta y la primera palabra", "IMG_9738 · 9743 · 9763", ["run", "sen1", "tit"],
   "Tres destellos de 0,4 s con gente caminando con el exoesqueleto (el corredor, la visitante, la otra visitante) y aterrizamos en la visitante, ya en movimiento desde el primer fotograma.",
-  "«¿QUÉ SIENTE UN PROFESIONAL AL PROBAR UN EXOESQUELETO?» en tres líneas, grande, en el primer fotograma. Aparece la primera palabra: «RARA».",
-  "Su voz desde el segundo 1: «…una sensación muy RARA». Golpe en el primer fotograma y entra la música."),
+  "«¿QUÉ SIENTE UN PROFESIONAL AL PROBAR UN EXOESQUELETO?» en tres líneas, grande, en el primer fotograma. Aparece la primera palabra: «CURIOSA».",
+  "Su voz desde el segundo 1: «una sensación muy CURIOSA». Golpe en el primer fotograma y entra la música."),
  (3.0, 7.0, "ctx", "Dónde estamos", "IMG_9755 · 9726", ["b1", "b2"],
   "La fachada de IFEMA Madrid, a cámara lenta (2 s), y un visitante con el exoesqueleto puesto (2 s).",
   "«IFEMA · ORTO MEDICAL CARE 2026 · LA FERIA PROFESIONAL DE LA ORTOPEDIA». Barra de progreso fina arriba que se va llenando hasta el final.",
   "Música sola. Whoosh en el corte."),
- (7.0, 14.0, "body", "Palabra 1 · RARA", "IMG_9738 · 0:02 – 0:08", ["sen1"],
-  "Un solo plano de 7 s: la visitante camina y lo cuenta. Sin cortes para que se note que es real.",
-  "Etiqueta «1/3 · RARA». «RARA» y «CURIOSA» en lima, grandes. Subtítulos de lo que dice.",
-  "Su voz, con la música muy baja. Cortamos la palabrota del inicio, como en el A2."),
+ (7.0, 14.0, "body", "Palabra 1 · SE NOTA", "IMG_1486 · 0:04 – 0:08 y 0:12 – 0:15", ["n1", "n2"],
+  "La visitante nueva viene caminando hacia la cámara con el exoesqueleto en las piernas. Dos frases suyas con un corte: «se nota, se nota un montón, me levanto las piernas solo» y «qué guay, te ayuda a ir más rápido». Así la chica de la camisa azul no se repite.",
+  "Etiqueta «1/3 · SE NOTA». NOTA en lima. Subtítulos de lo que dice.",
+  "Su voz, con la música muy baja."),
  (14.0, 19.0, "body", "Palabra 2 · RITMO", "IMG_9734 · 0:05 – 0:09", ["t34"],
   "El asistente anda con el exoesqueleto y explica cómo funciona. La palabra RITMO sustituye a la anterior.",
   "Etiqueta «2/3 · RITMO». RITMO en lima: «te va a copiar al RITMO al que andas». A los 1,6 s, un aviso pequeño: «la tercera palabra lo resume».",
   "Su voz. Whoosh en el corte. Aquí está la apertura de bucle: promete algo que llega en 10 s."),
- (19.0, 25.0, "ret", "Giro · otra opinión", "IMG_1486 · 0:04 – 0:07 y 0:12 – 0:15", ["n1", "n2"],
-  "Otra visitante, distinta, viene caminando hacia la cámara con el exoesqueleto en las piernas. Dos frases suyas con un corte: «se nota, se nota un montón, me levanto las piernas» y «qué guay, te ayuda a ir más rápido».",
-  "Etiqueta «OTRA OPINIÓN». NOTA en lima. Subtítulos de lo que dice.",
-  "Su voz. Es el cambio de ritmo del vídeo: otra cara, otro sitio, más movimiento. Un riser sube durante los últimos 2 s y se corta antes de la palabra 3."),
- (25.0, 31.0, "body", "Palabra 3 · REPOTENCIADO (el pago del hook)", "IMG_9738 · 0:20 – 0:25", ["sen2"],
+ (19.0, 24.9, "body", "Palabra 3 · REPOTENCIADO (el pago del hook)", "IMG_9738 · 0:20 – 0:25", ["sen2"],
   "La visitante vuelve: «te sientes ridículo andando porque te sientes raro, te sientes como repotenciado, ¿verdad?». En el vídeo original, justo en esa frase, la cámara enfoca un brazo; por eso pasa a un plano de ella caminando de espaldas mientras sigue su voz. Silencio de música un segundo antes de la palabra, y vuelve a golpe.",
   "Etiqueta «3/3 · REPOTENCIADO». REPOTENCIADO enorme, en lima, ocupa casi todo el ancho.",
   "Su voz. Corte de música y golpe justo en «repotenciado»."),
- (31.0, 34.0, "ret", "Energía · lo que se ve", "IMG_9763 · 9719 · 1486", ["run", "app", "n1"],
-  "Tres planos de 1 s con el exoesqueleto en movimiento: la persona corriendo, un primer plano de la cadera y la visitante nueva caminando. Sin los planos del señor mayor.",
+ (24.9, 28.0, "ret", "Energía · lo que se ve", "IMG_9763 · 9719 · 1486", ["run", "app", "n1"],
+  "Tres planos de 1 s con el exoesqueleto en movimiento: la persona corriendo, un primer plano de la cadera y la visitante nueva caminando.",
   "Sin texto.", "Música a tope. Whoosh en cada corte."),
- (34.0, 37.6, "cta", "CTA · colabora con nosotros", "IMG_9767 · 9766 · voz de 9646", ["walk", "back"],
+ (28.0, 31.5, "cta", "CTA · colabora con nosotros", "IMG_9767 · 9766 · voz de 9646", ["walk", "back"],
   "Sin la imagen del banco. Encima de su voz ponemos a las dos personas de ExoMov con la camiseta, desde que ya vienen andando hacia la cámara (2 s) y de espaldas (1,5 s).",
   "Tarjeta lima: «¿ERES PROFESIONAL DE LA ORTOPEDIA? · COMENTA ORTOPEDIA si quieres iniciar una colaboración». Entra en el segundo 0,2, con la voz.",
   "Su voz sola, sin cara: «Escríbenos y te contamos». La música baja un momento y vuelve. El ambiente del banco queda tapado por la música."),
- (37.6, 41.5, "cta", "Cierre y bucle", "Gráfico", [],
+ (31.5, 35.4, "cta", "Cierre y bucle", "Gráfico", [],
   "Logo, «Libertad de movimiento» y exomov.com. Termina en un corte limpio para que al reiniciarse enlace con la pregunta del principio.",
   "Debajo de la web: «Comenta ORTOPEDIA si quieres iniciar una colaboración».",
   "Golpe final y la música se corta en seco, sin fundido, para que el bucle no suene a final."),
@@ -81,7 +77,7 @@ page = f'''<title>Storyboard Tres palabras</title>
  <header>
   <div class="label">ExoMov · Vídeo nuevo para Instagram · Storyboard para aprobar</div>
   <h1>Tres palabras<br>para un exoesqueleto</h1>
-  <p class="lede">Un reel de reacciones pensado para retener y dirigido a profesionales de la ortopedia: una pregunta y la primera palabra en los 3 primeros segundos, tres palabras que forman una pequeña historia (RARA, RITMO, REPOTENCIADO), un giro a mitad que corta la monotonía y una invitación final a colaborar con ExoMov. Mezcla el material de IFEMA con el del primer vídeo.</p>
+  <p class="lede">Un reel de reacciones pensado para retener y dirigido a profesionales de la ortopedia: una pregunta y la primera palabra en los 3 primeros segundos, tres palabras que forman una pequeña historia (SE NOTA, RITMO, REPOTENCIADO), con CURIOSA como palabra de apertura, un giro a mitad que corta la monotonía y una invitación final a colaborar con ExoMov. Mezcla el material de IFEMA con el del primer vídeo.</p>
   <div class="facts"><span class="tag accent">≈ {dur:.0f} s</span><span class="tag">Rock indie · 118 bpm</span><span class="tag">Hook: ¿QUÉ SIENTE UN PROFESIONAL AL PROBAR UN EXOESQUELETO?</span><span class="tag">CTA: COLABORA CON EXOMOV</span><span class="tag">1080×1920 · 30 fps</span></div>
  </header>
  <section class="timeline" aria-label="Línea de tiempo"><div class="label">Línea de tiempo · hook, cuerpo, retención y CTA</div>
@@ -90,7 +86,7 @@ page = f'''<title>Storyboard Tres palabras</title>
  <section class="two2">
   <div class="box"><h3 class="label">Por qué debería retener</h3><ul>
    <li><b>Hook en 3 s:</b> una pregunta que se entiende sin sonido, movimiento desde el primer fotograma y una voz real diciendo «rara».</li>
-   <li><b>Una historia en tres palabras.</b> Cada palabra aparece en lima y enorme. RARA y RITMO abren una duda («¿en qué acaba?») y REPOTENCIADO la cierra.</li>
+   <li><b>Una historia en tres palabras.</b> Cada palabra aparece en lima y enorme. SE NOTA y RITMO abren una duda («¿en qué acaba?») y REPOTENCIADO la cierra.</li>
    <li><b>Aviso de que llega algo:</b> a mitad, un texto pequeño promete la tercera palabra. Es el motivo para no irse.</li>
    <li><b>Un cambio de ritmo cada 5-7 s:</b> reacción, reacción, explicación, reacción, montaje de movimiento.</li>
    <li><b>CTA doble:</b> en texto (tarjeta lima, dirigida a profesionales) y dicho por una persona («escríbenos y te contamos»).</li>
