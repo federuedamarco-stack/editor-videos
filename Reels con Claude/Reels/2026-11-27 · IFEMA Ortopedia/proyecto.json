@@ -13,10 +13,18 @@
     "D Un día en IFEMA ~60 s",
     "E Cómo se pone ~30 s"
   ],
-  "estado": "versiones A, B y D en render",
+  "estado": "versiones v2 de A, B y D en render",
   "versiones_hechas": [
     "A Crónica al ritmo ~46 s (152 bpm)",
     "B Relámpago ~31 s (168 bpm)",
     "D Un día en IFEMA ~61 s (140 bpm)"
+  ],
+  "cambios_v2": [
+    "El actor termina cuando cierra el maletero y corta al maletero cerrado; su frase sigue en off",
+    "Pantalla dividida con 4 tomas (abrochar, ajustar, pierna, pierna); sin la rodilla",
+    "Cortes más lentos",
+    "Acaba con las dos personas de ExoMov (9767)",
+    "A: cuadro «Reacciones de los profesionales»",
+    "Audio con techo de pico -5 dBTP para evitar saturación al comprimir"
   ]
 }
